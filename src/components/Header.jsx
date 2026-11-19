@@ -57,12 +57,12 @@ export function Header({ onOpenEnquiry }) {
 
           <div className="tech-meta-right">
             <a href="tel:+390481882320" className="tech-contact-link">
-              <Phone size={11} color="#A48256" />
+              <Phone size={11} color="var(--color-accent)" />
               <span className="font-mono tabular-nums">+39 (0481) 882320</span>
             </a>
             <span className="tech-sep">/</span>
             <a href="mailto:sales@tomsic.it" className="tech-contact-link">
-              <Mail size={11} color="#A48256" />
+              <Mail size={11} color="var(--color-accent)" />
               <span>sales@tomsic.it</span>
             </a>
           </div>
@@ -415,11 +415,12 @@ export function Header({ onOpenEnquiry }) {
         .desktop-nav {
           display: flex;
           align-items: center;
-          gap: clamp(1rem, 1.6vw, 2rem);
+          gap: clamp(0.85rem, 1.4vw, 1.85rem);
+          flex-shrink: 0;
         }
         .nav-link {
           font-family: var(--font-nav);
-          font-size: 0.9375rem;
+          font-size: 0.925rem;
           font-weight: 500;
           color: var(--color-graphite);
           padding: 0.5rem 0;
@@ -427,11 +428,12 @@ export function Header({ onOpenEnquiry }) {
           display: inline-flex;
           align-items: center;
           gap: 0.35rem;
-          white-space: nowrap;
+          white-space: nowrap !important;
+          flex-shrink: 0;
           transition: color var(--transition-fast);
         }
         .nav-link:hover {
-          color: var(--color-muted-bronze);
+          color: var(--color-accent);
         }
         .nav-link.active {
           color: var(--color-graphite);
@@ -444,7 +446,7 @@ export function Header({ onOpenEnquiry }) {
           left: 0;
           width: 100%;
           height: 2px;
-          background-color: var(--color-muted-bronze);
+          background-color: var(--color-accent);
         }
         .chevron-icon {
           transition: transform var(--transition-fast);
@@ -492,7 +494,7 @@ export function Header({ onOpenEnquiry }) {
           gap: 0.35rem;
           font-size: 0.8125rem;
           font-weight: 600;
-          color: var(--color-muted-bronze);
+          color: var(--color-accent);
           margin-top: 1.25rem;
         }
         .dropdown-items {
@@ -516,7 +518,7 @@ export function Header({ onOpenEnquiry }) {
         .dropdown-card-index {
           font-size: 0.75rem;
           font-weight: 700;
-          color: var(--color-muted-bronze);
+          color: var(--color-accent);
           margin-top: 2px;
         }
         .dropdown-card-title {
@@ -595,7 +597,7 @@ export function Header({ onOpenEnquiry }) {
         }
         .lang-option.selected {
           font-weight: 600;
-          color: var(--color-muted-bronze);
+          color: var(--color-accent);
         }
         .mobile-toggle {
           display: none;
@@ -656,7 +658,7 @@ export function Header({ onOpenEnquiry }) {
           display: block;
           margin-bottom: 0.65rem;
           letter-spacing: 0.1em;
-          color: var(--color-muted-bronze);
+          color: var(--color-accent);
           font-size: 0.7rem;
         }
         .mobile-nav-link {
@@ -785,25 +787,37 @@ export function Header({ onOpenEnquiry }) {
           overflow-wrap: break-word;
         }
 
-        @media (max-width: 1280px) {
+        @media (max-width: 1320px) {
           .brand-tag-wrapper {
             display: none;
           }
           .desktop-nav {
             gap: 1.15rem;
           }
-          .nav-link {
-            font-size: 0.875rem;
-            white-space: nowrap;
-          }
         }
 
-        @media (max-width: 1140px) {
+        @media (max-width: 1220px) {
           .header-cta {
             display: none;
           }
           .desktop-nav {
-            gap: 1rem;
+            gap: 1.1rem;
+          }
+          .nav-link {
+            font-size: 0.875rem;
+            white-space: nowrap !important;
+          }
+        }
+
+        @media (max-width: 1140px) {
+          .desktop-nav {
+            display: none !important;
+          }
+          .mobile-toggle {
+            display: inline-flex !important;
+          }
+          .header-cta {
+            display: none !important;
           }
         }
 
@@ -812,15 +826,6 @@ export function Header({ onOpenEnquiry }) {
             flex-direction: column;
             gap: 0.35rem;
             align-items: flex-start;
-          }
-          .desktop-nav {
-            display: none;
-          }
-          .mobile-toggle {
-            display: inline-flex;
-          }
-          .header-cta {
-            display: none;
           }
         }
         @media (max-width: 640px) {

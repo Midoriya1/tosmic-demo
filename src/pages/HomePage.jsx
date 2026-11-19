@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, ArrowRight, CheckCircle2, Shield, Cpu, Activity, Award, Globe, Layers, Sparkles, Filter, ChevronRight, Sliders } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, Phone, Mail, Globe } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SectionHeading } from '../components/SectionHeading';
-import { ProductCard } from '../components/ProductCard';
 import { productsData } from '../data/products';
 import { solutionsData } from '../data/solutions';
 import { newsData } from '../data/news';
@@ -18,39 +16,47 @@ export function HomePage({ onOpenEnquiry }) {
   const [activeProcessStage, setActiveProcessStage] = useState('stage-yarn');
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('all');
 
-  // Process Stages for Spinning Mill Production Flow
+  // Spinning Mill Process Pipeline
   const processStages = [
     {
       id: 'stage-raw',
       number: '01',
       name: 'Raw Cotton & Stickiness',
-      focus: 'Entomological Honeydew Detection',
-      instruments: ['cotton-sugar-test-tms54', 'glucosil-sugar-solution-tms55'],
-      description: 'Pre-production bale screening to quarantine insect honeydew sugars in 15 minutes, preventing catastrophic roller lapping and machine jams in spinning.'
+      subtitle: 'Entomological Honeydew Detection',
+      image: '/assets/cotton-sugar-tms54.jpg',
+      problem: 'Insect honeydew sugars liquefy under mill humidity, sticking to card clothing, rubber cots, and ring travelers, causing catastrophic yarn breakage and downtime.',
+      solution: 'The TMS54 chemical colorimetric test detects and grades stickiness in 15 minutes prior to bale opening, allowing mills to blend or neutralize sticky cotton before it enters the blowroom.',
+      instruments: ['cotton-sugar-test-tms54', 'glucosil-sugar-solution-tms55']
     },
     {
       id: 'stage-card',
       number: '02',
-      name: 'Carding & Web Cleanliness',
-      focus: 'Short-Term Autolevelling & Impurity Grading',
-      instruments: ['card-autoleveller-tms25-r2c', 'tms60-nep-trash'],
-      description: 'Closed-loop digital drafting reduces 1-meter sliver count variation by up to 70%, while optical sensors classify neps and seed-coat fragments.'
+      name: 'Carding Preparation & Impurities',
+      subtitle: 'Sliver Regulation & Nep Diagnostics',
+      image: '/assets/tms60-nep-trash.jpg',
+      problem: 'Variations in carding web density and undetected trash or neps carry forward into drawframes, permanently degrading yarn evenness and surface appearance.',
+      solution: 'TMS25-R2C card autolevelling reduces 1-meter sliver count CV% by up to 70%, while TMS60 optical sensors classify neps, seed-coat fragments, and dust in real time.',
+      instruments: ['card-autoleveller-tms25-r2c', 'tms60-nep-trash']
     },
     {
       id: 'stage-draw',
       number: '03',
-      name: 'Drawing & Long Fibre Drafting',
-      focus: 'High-Speed Regulation up to 1,000 m/min',
-      instruments: ['drawframe-autoleveller-tms25-r2d', 'gill-box-autoleveller', 'sliver-quality-monitor-tms25-qm2'],
-      description: 'Digital servo autolevelling for cotton drawframes and wool/acrylic gill boxes, paired with continuous online spectrogram surveillance.'
+      name: 'Drafting & Drawing Regulation',
+      subtitle: 'High-Speed Kinematic Autolevelling',
+      image: '/assets/card-autoleveller-diagram.png',
+      problem: 'High delivery speeds up to 1,000 m/min amplify drafting errors. Gear differential systems wear out and create long-period periodic mass variations.',
+      solution: 'Direct digital servo autolevelling for cotton drawframes and wool/acrylic gill boxes replaces mechanical differentials with high-response digital kinematic control.',
+      instruments: ['drawframe-autoleveller-tms25-r2d', 'gill-box-autoleveller', 'sliver-quality-monitor-tms25-qm2']
     },
     {
       id: 'stage-yarn',
       number: '04',
       name: 'Finished Yarn Metrology',
-      focus: 'Evenness, Tensile Strength & Count',
-      instruments: ['easy-evenness-tester', 'tensotester-3', 'easyf-filament', 'tms45-count-analyser'],
-      description: 'Comprehensive textile laboratory benches matching international reference standards (ISO 2062, ASTM D2256) with 3-click simplicity and 25-year database longevity.'
+      subtitle: 'Evenness, Tensile Strength & Count',
+      image: '/assets/easy-evenness-tester.jpg',
+      problem: 'Quality certifications require rigorous compliance with international standards (ISO 2062, ASTM D2256) without proprietary testing bench vendor lock-in.',
+      solution: 'Comprehensive laboratory instruments operating on standard PC platforms with 3-click test simplicity, automatic inter-machine database synchronization, and decades of reliable service.',
+      instruments: ['easy-evenness-tester', 'tensotester-3', 'easyf-filament', 'tms45-count-analyser']
     }
   ];
 
@@ -61,143 +67,65 @@ export function HomePage({ onOpenEnquiry }) {
     ? productsData.slice(0, 6)
     : productsData.filter(p => p.categorySlug === activeCategoryFilter);
 
-  // Flagship Hero Product
-  const flagshipProduct = productsData.find(p => p.slug === 'easy-evenness-tester') || productsData[0];
-
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // 1. Cinematic Hero Entrance Timeline
+      // 1. Subtle Hero Entrance
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-      tl.fromTo('.hero-status-strip',
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.7, delay: 0.15 }
+      tl.fromTo('.hero-dateline',
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.6, delay: 0.1 }
       )
       .fromTo('.hero-headline',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' },
-        '-=0.45'
-      )
-      .fromTo('.hero-lead',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.75 },
-        '-=0.55'
-      )
-      .fromTo('.hero-cta-group .btn',
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.6, stagger: 0.12 },
-        '-=0.45'
-      )
-      .fromTo('.hero-metric-cell',
-        { opacity: 0, y: 14 },
-        { opacity: 1, y: 0, duration: 0.55, stagger: 0.08 },
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.8 },
         '-=0.4'
       )
-      .fromTo('.machinery-hero-frame',
-        { opacity: 0, scale: 0.96, y: 24 },
-        { opacity: 1, scale: 1, y: 0, duration: 1.0, ease: 'expo.out' },
-        0.25
+      .fromTo('.hero-lead',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.7 },
+        '-=0.5'
       )
-      .fromTo('.hero-machine-img',
-        { scale: 1.06 },
-        { scale: 1.0, duration: 1.3, ease: 'power2.out' },
-        0.35
+      .fromTo('.hero-cta-row',
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.6 },
+        '-=0.45'
+      )
+      .fromTo('.hero-image-canvas',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1.0, ease: 'power3.out' },
+        0.2
       );
 
-      // 2. Process Navigator Reveal
-      gsap.fromTo('.stage-active-panel',
-        { opacity: 0, y: 32 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.85,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.stage-active-panel',
-            start: 'top 85%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-
-      // 3. Flagship Spotlight Card Reveal
-      gsap.fromTo('.flagship-image-card',
-        { opacity: 0, scale: 0.97, y: 24 },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.9,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.flagship-spotlight-box',
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-
-      gsap.fromTo('.flagship-copy-col',
-        { opacity: 0, x: 24 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.85,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.flagship-spotlight-box',
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-
-      // 4. Company Heritage Showcase
-      gsap.fromTo('.heritage-facility-wrapper',
-        { opacity: 0, clipPath: 'inset(0% 100% 0% 0%)' },
-        {
-          opacity: 1,
-          clipPath: 'inset(0% 0% 0% 0%)',
-          duration: 1.05,
-          ease: 'power3.inOut',
-          scrollTrigger: {
-            trigger: '.heritage-editorial-grid',
-            start: 'top 82%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-
-      gsap.fromTo('.heritage-story-col',
-        { opacity: 0, y: 28 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.85,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.heritage-editorial-grid',
-            start: 'top 82%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-
-      // 5. Engineering Philosophy Cards Stagger
-      gsap.fromTo('.philosophy-card',
+      // 2. Editorial Scroll Reveals
+      gsap.fromTo('.statement-text',
         { opacity: 0, y: 24 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.7,
-          stagger: 0.12,
+          duration: 0.85,
           ease: 'power3.out',
           scrollTrigger: {
-            trigger: '.philosophy-grid',
-            start: 'top 85%',
+            trigger: '.statement-section',
+            start: 'top 82%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+
+      gsap.fromTo('.flagship-feature-grid',
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.flagship-section',
+            start: 'top 80%',
             toggleActions: 'play none none none'
           }
         }
@@ -208,558 +136,265 @@ export function HomePage({ onOpenEnquiry }) {
   }, []);
 
   return (
-    <div className="homepage-wrapper" ref={homeRef}>
-      {/* 1. HERO SECTION (Editorial Engineering) */}
-      <section className="hero-section bg-grid-blueprint">
-        <div className="container hero-container">
-          <div className="hero-grid">
-            <div className="hero-text-col">
-              <div className="hero-status-strip">
-                <span className="heritage-tag">
-                  <span className="heritage-dot" />
-                  <span className="font-mono">ENGINEERED IN ITALY · SINCE 1956</span>
-                </span>
-                <span className="status-indicator">
-                  <span className="status-dot" />
-                  <span>ACIMIT CERTIFIED FACTORY</span>
-                </span>
-              </div>
+    <div className="homepage-editorial" ref={homeRef}>
+      
+      {/* 1. HERO — ITALIAN INDUSTRIAL EDITORIAL */}
+      <section className="hero-editorial">
+        <div className="container">
+          <div className="hero-header-block">
+            <span className="hero-dateline font-mono">
+              SAVOGNA D’ISONZO (GO), ITALY · EST. 1956 · ACIMIT MEMBER
+            </span>
 
-              <h1 className="hero-headline">
-                Precision technology for industries that demand more.
-              </h1>
+            <h1 className="hero-headline">
+              Seven Decades of Precision Textile Metrology.
+            </h1>
 
-              <p className="hero-lead">
-                Advanced solutions for textile testing, spinning autolevelling, and raw fibre quality control. Engineered in Savogna d’Isonzo with seven decades of European mechanical rigor.
+            <p className="hero-lead">
+              Tomsic designs and manufactures high-precision textile laboratory testing instruments, spinning autolevellers, and raw cotton sugar diagnostics. 100% engineered in Savogna d'Isonzo on open, non-proprietary architecture.
+            </p>
+
+            <div className="hero-cta-row">
+              <Link to="/solutions" className="btn btn-primary">
+                <span>Explore Engineering Solutions</span>
+                <ArrowRight size={15} />
+              </Link>
+
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => onOpenEnquiry && onOpenEnquiry('', 'Sales')}
+              >
+                <span>Request Factory Consultation</span>
+                <ArrowUpRight size={15} />
+              </button>
+            </div>
+          </div>
+
+          {/* Large Hero Machinery Centerpiece */}
+          <div className="hero-image-canvas">
+            <div className="hero-image-wrap">
+              <img
+                src="/assets/hero-machine.webp"
+                alt="Tomsic TMS60 Nep and Trash Testing Metrology Instrument"
+                className="hero-machinery-img"
+                loading="eager"
+              />
+            </div>
+            <div className="hero-image-caption font-mono">
+              <span>TMS60 NEP & TRASH METROLOGY SYSTEM</span>
+              <span className="caption-dot">/</span>
+              <span>100% IN-HOUSE ITALIAN SYNTHESIS</span>
+              <span className="caption-dot">/</span>
+              <Link to="/products/tms60-nep-trash" className="caption-link">
+                View Datasheet <ArrowUpRight size={12} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. STATEMENT OF CREDIBILITY & ITALIAN SYNTHESIS */}
+      <section className="statement-section border-top-hairline">
+        <div className="container">
+          <div className="statement-grid">
+            <div className="statement-left">
+              <span className="badge-overline accent">OUR CORE CONVICTION</span>
+              <blockquote className="statement-quote">
+                "We reject proprietary obsolescence. Every electronic board, mechanical assembly, and measurement software algorithm is engineered and synthesized under one Italian roof."
+              </blockquote>
+            </div>
+
+            <div className="statement-right">
+              <p className="statement-desc">
+                Founded in 1956 by Mr. Carlo Tomsic, our enterprise began with electronic systems and control engineering for legendary drawframe specialist VOUK. Over four decades of specialized collaboration, we accumulated singular mastery in autolevelling kinematics and textile metrology.
+              </p>
+              <p className="statement-desc">
+                Today, managed by the second generation—Mr. Silvan Tomsic (President) and Mr. Ladi Tomsic (Vice-President)—we operate from our modern complex in Savogna d'Isonzo. Every Tomsic system runs on standard commercial computer hardware and open Windows platforms, ensuring decades of reliable service without forced proprietary software fees.
               </p>
 
-              <div className="hero-cta-group">
-                <Link to="/solutions" className="btn btn-primary">
-                  <span>Explore Solutions</span>
-                  <ArrowRight size={15} />
-                </Link>
-
-                <button 
-                  className="btn btn-secondary"
-                  onClick={() => onOpenEnquiry && onOpenEnquiry('', 'Sales')}
-                >
-                  <span>Request Factory Consultation</span>
-                  <ArrowUpRight size={15} />
-                </button>
-              </div>
-
-              {/* Technical Credibility Row */}
-              <div className="hero-metrics-grid">
-                <div className="hero-metric-cell">
-                  <span className="metric-val">1956</span>
-                  <span className="metric-lbl">Founding Year · Gorizia</span>
+              <div className="statement-meta-row font-mono">
+                <div className="meta-fact">
+                  <span className="fact-num">1956</span>
+                  <span className="fact-label">Founding Year · Gorizia</span>
                 </div>
-                <div className="hero-metric-cell">
-                  <span className="metric-val">-70%</span>
-                  <span className="metric-lbl">1-Meter Sliver Count CV</span>
+                <div className="meta-fact">
+                  <span className="fact-num">2003</span>
+                  <span className="fact-label">Savogna d’Isonzo Expansion</span>
                 </div>
-                <div className="hero-metric-cell">
-                  <span className="metric-val">30+</span>
-                  <span className="metric-lbl">Countries Supplied</span>
-                </div>
-                <div className="hero-metric-cell">
-                  <span className="metric-val font-mono">0.5%</span>
-                  <span className="metric-lbl">Class 0.5 Load Cell Precision</span>
+                <div className="meta-fact">
+                  <span className="fact-num">30+</span>
+                  <span className="fact-label">Export Countries Supplied</span>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Hero Visual Presentation: Flagship Machinery Hero */}
-            <div className="hero-visual-col">
-              <div className="machinery-hero-frame">
-                {/* Architectural Drafting Crosshairs */}
-                <span className="drafting-crosshair" style={{ top: '8px', left: '8px' }} />
-                <span className="drafting-crosshair" style={{ top: '8px', right: '8px' }} />
-                <span className="drafting-crosshair" style={{ bottom: '8px', left: '8px' }} />
-                <span className="drafting-crosshair" style={{ bottom: '8px', right: '8px' }} />
+          {/* Diptych: Factory & Italian Craft Photography */}
+          <div className="statement-diptych">
+            <div className="diptych-card">
+              <img
+                src="/assets/tomsic-facility.jpg"
+                alt="Tomsic industrial engineering plant in Savogna d'Isonzo (GO), Italy"
+                className="diptych-img"
+                loading="lazy"
+              />
+              <div className="diptych-caption font-mono">
+                <span>HEADQUARTERS & MANUFACTURING COMPLEX · SAVOGNA D’ISONZO (GO), ITALY</span>
+              </div>
+            </div>
 
-                <div className="machinery-frame-header">
-                  <span className="font-mono text-meta">UNIT MODEL: TMS60 / NRE-23</span>
-                  <span className="meta-pill">OPTICAL IMPURITY CLASSIFIER</span>
-                </div>
-
-                <div className="machinery-img-wrap">
-                  <img
-                    src="/assets/hero-machine.webp"
-                    alt="Tomsic TMS60 Nep and Trash Testing Instrument"
-                    className="hero-machine-img"
-                    loading="eager"
-                  />
-                </div>
-
-                <div className="machinery-specs-overlay">
-                  <div className="spec-chip">
-                    <span className="spec-label">ANALYSIS TYPE</span>
-                    <strong className="spec-value">Neps, Trash, Seed-Coat</strong>
-                  </div>
-                  <div className="spec-chip">
-                    <span className="spec-label">DETECTION SPEED</span>
-                    <strong className="spec-value font-mono">High-Speed Optical</strong>
-                  </div>
-                  <div className="spec-chip">
-                    <span className="spec-label">ORIGIN</span>
-                    <strong className="spec-value">Gorizia, Italy</strong>
-                  </div>
-                </div>
-
-                <div className="machinery-frame-footer">
-                  <div className="footer-legend">
-                    <strong>TMS60 Nep & Trash Metrology Station</strong>
-                    <span>Launched at ITMA Milan · Designed for card and drawframe slivers</span>
-                  </div>
-                  <Link to="/products/tms60-nep-trash" className="btn-link">
-                    <span>Inspect System</span>
-                    <ArrowUpRight size={14} />
-                  </Link>
-                </div>
+            <div className="diptych-card">
+              <img
+                src="/assets/italian-heritage.jpg"
+                alt="Italian Spun Yarn Heritage cones"
+                className="diptych-img"
+                loading="lazy"
+              />
+              <div className="diptych-caption font-mono">
+                <span>SEVEN DECADES OF TEXTILE METROLOGY PARTNERSHIP</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. INTERACTIVE PRODUCTION STAGE NAVIGATOR (Process-Oriented Metrology) */}
+      {/* 3. THE PRODUCTION JOURNEY (Interactive Metrology Pipeline) */}
       <section className="section bg-white border-top-hairline">
         <div className="container">
-          <SectionHeading
-            overline="PROCESS-ORIENTED METROLOGY"
-            title="Quality control across every spinning milestone."
-            subtitle="From raw bale stickiness diagnostics to final packaged yarn regularity, select a production phase to inspect dedicated instrumentation."
-          />
+          <div className="section-header-editorial">
+            <span className="badge-overline">PROCESS-ORIENTED METROLOGY</span>
+            <h2 className="section-title-editorial">Quality Control from Raw Fibre to Spun Yarn.</h2>
+            <p className="section-lead-editorial">
+              Each production stage requires dedicated physics, sensors, and regulation. Select a phase below to inspect the metrological challenge and Tomsic's engineering solution.
+            </p>
+          </div>
 
-          <div className="stage-selector-bar">
+          {/* Clean Editorial Stage Selector */}
+          <div className="process-pipeline-nav">
             {processStages.map(stage => (
               <button
                 key={stage.id}
-                className={`stage-nav-pill ${activeProcessStage === stage.id ? 'active' : ''}`}
+                type="button"
+                className={`pipeline-nav-btn ${activeProcessStage === stage.id ? 'active' : ''}`}
                 onClick={() => setActiveProcessStage(stage.id)}
               >
-                <span className="stage-nav-num font-mono">{stage.number}</span>
-                <span className="stage-nav-name">{stage.name}</span>
+                <span className="btn-stage-num font-mono">{stage.number}</span>
+                <span className="btn-stage-name">{stage.name}</span>
               </button>
             ))}
           </div>
 
-          <div className="stage-active-panel">
-            <div className="stage-panel-left">
-              <span className="text-meta font-mono">PRODUCTION PHASE {currentStage.number}</span>
-              <h3 className="stage-panel-title">{currentStage.name}</h3>
-              <p className="stage-panel-focus font-mono">{currentStage.focus}</p>
-              <p className="stage-panel-desc">{currentStage.description}</p>
+          {/* Active Stage Editorial Spread */}
+          <div className="stage-editorial-spread">
+            <div className="stage-text-block">
+              <span className="stage-overline font-mono">PHASE {currentStage.number} · {currentStage.subtitle}</span>
+              <h3 className="stage-heading">{currentStage.name}</h3>
 
-              <div className="stage-panel-actions">
-                <Link to="/solutions" className="btn btn-secondary btn-sm">
-                  <span>Explore Division Architecture</span>
-                  <ArrowRight size={14} />
-                </Link>
+              <div className="stage-editorial-comparison">
+                <div className="comparison-col">
+                  <h4 className="comparison-title font-mono">THE METROLOGICAL RISK</h4>
+                  <p className="comparison-text">{currentStage.problem}</p>
+                </div>
+
+                <div className="comparison-col">
+                  <h4 className="comparison-title font-mono">THE TOMSIC SYNTHESIS</h4>
+                  <p className="comparison-text">{currentStage.solution}</p>
+                </div>
+              </div>
+
+              <div className="stage-instruments-group">
+                <span className="instruments-label font-mono">DEDICATED SYSTEMS ({stageProducts.length})</span>
+                <div className="stage-instruments-grid">
+                  {stageProducts.map(p => (
+                    <Link key={p.slug} to={`/products/${p.slug}`} className="stage-product-card">
+                      <div className="prod-thumb">
+                        <img src={p.primaryImage} alt={p.name} />
+                      </div>
+                      <div className="prod-details">
+                        <span className="prod-code font-mono">{p.code}</span>
+                        <strong className="prod-name">{p.name}</strong>
+                      </div>
+                      <ArrowUpRight size={15} className="prod-arrow" />
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div className="stage-panel-right">
-              <span className="text-meta font-mono" style={{ display: 'block', marginBottom: '1rem' }}>
-                MATCHED INDUSTRIAL INSTRUMENTS ({stageProducts.length})
-              </span>
-              <div className="stage-products-row">
-                {stageProducts.map(p => (
-                  <Link key={p.slug} to={`/products/${p.slug}`} className="stage-product-mini-card">
-                    <div className="mini-card-thumb">
-                      <img src={p.primaryImage} alt={p.name} />
-                    </div>
-                    <div className="mini-card-info">
-                      <span className="mini-card-code font-mono">{p.code}</span>
-                      <strong className="mini-card-name">{p.name}</strong>
-                      <span className="mini-card-tagline">{p.tagline}</span>
-                    </div>
-                    <ArrowUpRight size={16} className="mini-card-arrow" />
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. FLAGSHIP MACHINERY SPOTLIGHT (Editorial Feature) */}
-      <section className="section bg-warm-ivory border-top-hairline">
-        <div className="container">
-          <div className="flagship-spotlight-box">
-            <span className="drafting-crosshair" style={{ top: '12px', left: '12px' }} />
-            <span className="drafting-crosshair" style={{ top: '12px', right: '12px' }} />
-            
-            <div className="flagship-grid">
-              <div className="flagship-media-col">
-                <div className="flagship-image-card">
-                  <span className="flagship-badge">FLAGSHIP METROLOGY SYSTEM</span>
-                  <img
-                    src="/assets/easy-evenness-tester.jpg"
-                    alt="TOMSIC easy Evenness Tester System"
-                    className="flagship-hero-img"
-                    loading="lazy"
-                  />
-                  <div className="flagship-caption-row font-mono">
-                    <span>CAPACITANCE & OPTICAL SENSOR SLOTS</span>
-                    <span>24-POSITION AUTOCHANGER CREEL</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flagship-copy-col">
-                <div className="flagship-meta font-mono">
-                  <span>PRODUCT CODE: TMS-EASY</span>
-                  <span className="tech-sep">/</span>
-                  <span>1 TEX – 12 KTEX (UP TO 30 KTEX)</span>
-                </div>
-
-                <h2 className="flagship-title">“easy” Evenness Tester</h2>
-                <h3 className="flagship-subtitle">World-standard evenness and mass variation testing for yarn, roving, and sliver.</h3>
-
-                <p className="flagship-text">
-                  Designed to replace cumbersome testing benches with an extractable modular architecture, the "easy" Evenness Tester operates on standard commercial PCs using Microsoft .NET technology. Tested and approved by world-renowned textile manufacturers including Ermenegildo Zegna and Botto Giuseppe.
-                </p>
-
-                <div className="flagship-features-grid">
-                  <div className="flagship-feat-item">
-                    <strong className="feat-val font-mono">3-Clicks</strong>
-                    <span className="feat-lbl">Complete standard test protocol execution</span>
-                  </div>
-                  <div className="flagship-feat-item">
-                    <strong className="feat-val font-mono">400 m/min</strong>
-                    <span className="feat-lbl">Continuous precision testing speed</span>
-                  </div>
-                  <div className="flagship-feat-item">
-                    <strong className="feat-val font-mono">Link Job</strong>
-                    <span className="feat-lbl">Automatic count synchronization with TMS45</span>
-                  </div>
-                  <div className="flagship-feat-item">
-                    <strong className="feat-val font-mono">25 Years</strong>
-                    <span className="feat-lbl">Relational database history & direct Excel export</span>
-                  </div>
-                </div>
-
-                <div className="flagship-action-row">
-                  <Link to="/products/easy-evenness-tester" className="btn btn-primary">
-                    <span>Explore Complete Technical Specifications</span>
-                    <ArrowRight size={15} />
-                  </Link>
-
-                  <button
-                    className="btn btn-secondary"
-                    onClick={() => onOpenEnquiry && onOpenEnquiry('easy Evenness Tester', 'Sales')}
-                  >
-                    <span>Request Quotation</span>
-                    <ArrowUpRight size={15} />
-                  </button>
-                </div>
-              </div>
+            <div className="stage-image-block">
+              <img
+                src={currentStage.image}
+                alt={currentStage.name}
+                className="stage-large-img"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4. COMPANY HERITAGE (Architectural Editorial Presentation) */}
-      <section className="section bg-white border-top-hairline">
+      {/* 4. FLAGSHIP PRODUCT — "EASY" EVENNESS TESTER */}
+      <section className="section bg-warm-ivory border-top-hairline flagship-section">
         <div className="container">
-          <div className="heritage-editorial-grid">
-            {/* Left: Architectural Factory Showcase & Diptych */}
-            <div className="heritage-gallery-col">
-              <div className="heritage-main-frame relative">
-                <div className="heritage-facility-wrapper relative">
-                  <span className="drafting-crosshair top-left" />
-                  <span className="drafting-crosshair top-right" />
-                  <img
-                    src="/assets/tomsic-facility.jpg"
-                    alt="Tomsic industrial engineering plant in Savogna d'Isonzo (GO), Italy"
-                    className="heritage-facility-img"
-                    loading="lazy"
-                  />
-                  <div className="facility-badge-strip font-mono">
-                    <span className="facility-dot" />
-                    <span>SAVOGNA D’ISONZO PLANT · GORIZIA, ITALY</span>
-                  </div>
-                </div>
-
-                {/* Sub-strip: Italian Textile Craft Diptych + Factory Data */}
-                <div className="heritage-diptych-row">
-                  <div className="heritage-craft-thumb">
-                    <img
-                      src="/assets/italian-heritage.jpg"
-                      alt="Italian Spun Yarn Heritage"
-                      className="craft-img"
-                      loading="lazy"
-                    />
-                    <span className="craft-tag font-mono">ITALIAN YARN CRAFT</span>
-                  </div>
-
-                  <div className="heritage-telemetry-block font-mono">
-                    <div className="telemetry-item">
-                      <span className="tel-label">FOUNDED:</span>
-                      <strong className="tel-val">1956 · Gorizia</strong>
-                    </div>
-                    <div className="telemetry-item">
-                      <span className="tel-label">EXPANSION:</span>
-                      <strong className="tel-val">2003 (3× Capacity)</strong>
-                    </div>
-                    <div className="telemetry-item">
-                      <span className="tel-label">COORDINATES:</span>
-                      <strong className="tel-val">45°52′N 13°34′E</strong>
-                    </div>
-                    <div className="telemetry-item">
-                      <span className="tel-label">SYNTHESIS:</span>
-                      <strong className="tel-val text-precision">100% In-House</strong>
-                    </div>
-                  </div>
-                </div>
+          <div className="flagship-feature-grid">
+            <div className="flagship-image-col">
+              <img
+                src="/assets/easy-evenness-tester.jpg"
+                alt="Tomsic easy Evenness Tester System"
+                className="flagship-img"
+                loading="lazy"
+              />
+              <div className="flagship-img-meta font-mono">
+                <span>DUAL CAPACITIVE & OPTICAL METROLOGY</span>
+                <span>24-POSITION AUTOCHANGER</span>
               </div>
             </div>
 
-            {/* Right: Narrative Story & Structured Pillars */}
-            <div className="heritage-story-col">
-              <div className="header-badge-row">
-                <span className="badge-overline">INDEPENDENT INDUSTRIAL HERITAGE</span>
-                <span className="badge-subtag">EST. 1956 · ITALY</span>
-              </div>
-
-              <h2 className="heritage-main-title">
-                European engineering heritage, built without compromise.
-              </h2>
-              
-              <p className="heritage-lead-para lead">
-                Founded in 1956 by Mr. Carlo Tomsic, our enterprise began with electronic systems and control engineering for legendary drawframe specialist VOUK. Over four decades of specialized industrial collaboration, we accumulated singular mastery in autolevelling, high-speed drafting kinematics, and textile metrology.
+            <div className="flagship-content-col">
+              <span className="badge-overline accent">FLAGSHIP LABORATORY BENCH</span>
+              <h2 className="flagship-headline">“easy” Evenness Tester</h2>
+              <p className="flagship-tagline">
+                World-standard mass variation and spectrogram testing for yarn, roving, and sliver.
               </p>
 
-              <p className="heritage-sub-para">
-                Today, managed by the second generation of the Tomsic family—Mr. Silvan Tomsic (President) and Mr. Ladi Tomsic (Vice-President)—we operate from our modern complex in Savogna d'Isonzo. We design and manufacture 100% of our electronic boards, mechanical assemblies, and measurement software in-house. Our philosophy rejects proprietary obsolescence: every Tomsic system runs on standard commercial computer hardware and open Windows platforms, ensuring decades of reliable service.
+              <p className="flagship-body">
+                Designed to replace cumbersome, proprietary testing benches with an extractable modular architecture, the "easy" Evenness Tester operates on standard commercial PCs using Microsoft .NET technology. Tested and approved by world-renowned textile manufacturers including Ermenegildo Zegna and Botto Giuseppe.
               </p>
 
-              {/* 3 Structured Architectural Pillars */}
-              <div className="heritage-pillars-list">
-                <div className="pillar-credential-box">
-                  <div className="pillar-index-badge font-mono">01</div>
-                  <div className="pillar-text-group">
-                    <h4>Independent Family Governance</h4>
-                    <p>Direct engineering accountability from our owner-directors to your spinning mill operations.</p>
-                  </div>
+              {/* 4 Clean Editorial Metrics */}
+              <div className="flagship-specs-matrix">
+                <div className="flagship-spec-cell">
+                  <strong className="spec-big font-mono">3 Clicks</strong>
+                  <span className="spec-sub">Complete test protocol execution</span>
                 </div>
-
-                <div className="pillar-credential-box">
-                  <div className="pillar-index-badge font-mono">02</div>
-                  <div className="pillar-text-group">
-                    <h4>100% In-House Technical Synthesis</h4>
-                    <p>Sensors, chassis, and digital signal processors crafted under one Italian roof.</p>
-                  </div>
+                <div className="flagship-spec-cell">
+                  <strong className="spec-big font-mono">400 m/min</strong>
+                  <span className="spec-sub">Continuous precision testing speed</span>
                 </div>
-
-                <div className="pillar-credential-box">
-                  <div className="pillar-index-badge font-mono">03</div>
-                  <div className="pillar-text-group">
-                    <h4>Universal Metrology Alignment</h4>
-                    <p>Results and spectrograms fully comparable with international textile reference standards.</p>
-                  </div>
+                <div className="flagship-spec-cell">
+                  <strong className="spec-big font-mono">Link Job</strong>
+                  <span className="spec-sub">Automatic count sync with TMS45</span>
+                </div>
+                <div className="flagship-spec-cell">
+                  <strong className="spec-big font-mono">25 Years</strong>
+                  <span className="spec-sub">Relational database history & Excel export</span>
                 </div>
               </div>
 
-              {/* CTA & ACIMIT Strip */}
-              <div className="heritage-cta-strip">
-                <Link to="/company" className="btn btn-primary">
-                  <span>Explore Seven Decades of History</span>
+              <div className="flagship-actions-row">
+                <Link to="/products/easy-evenness-tester" className="btn btn-primary">
+                  <span>Complete Technical Specifications</span>
                   <ArrowRight size={15} />
                 </Link>
 
-                <div className="acimit-cert-pill font-mono">
-                  <img src="/assets/acimit-logo.png" alt="ACIMIT Association" className="acimit-logo-badge" />
-                  <div className="acimit-cert-text">
-                    <span className="cert-org">ACIMIT MEMBER</span>
-                    <span className="cert-origin">MADE IN ITALY</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. VERIFIED PRODUCT CATALOG (Filtered Grid) */}
-      <section className="section bg-warm-ivory border-top-hairline">
-        <div className="container">
-          <div className="products-section-header">
-            <div>
-              <span className="badge-overline">MACHINERY & INSTRUMENT DIRECTORY</span>
-              <h2 className="heading-main-title">Precision Instruments & Autolevellers</h2>
-              <p className="heading-subtitle">
-                Certified industrial systems deployed across leading global spinning mills.
-              </p>
-            </div>
-
-            {/* Filter Tabs */}
-            <div className="product-filter-tabs">
-              <button
-                className={`filter-tab ${activeCategoryFilter === 'all' ? 'active' : ''}`}
-                onClick={() => setActiveCategoryFilter('all')}
-              >
-                All Systems ({productsData.length})
-              </button>
-              <button
-                className={`filter-tab ${activeCategoryFilter === 'laboratory' ? 'active' : ''}`}
-                onClick={() => setActiveCategoryFilter('laboratory')}
-              >
-                Laboratory Solutions (5)
-              </button>
-              <button
-                className={`filter-tab ${activeCategoryFilter === 'spinning' ? 'active' : ''}`}
-                onClick={() => setActiveCategoryFilter('spinning')}
-              >
-                Spinning Automation (4)
-              </button>
-              <button
-                className={`filter-tab ${activeCategoryFilter === 'sugar' ? 'active' : ''}`}
-                onClick={() => setActiveCategoryFilter('sugar')}
-              >
-                Cotton Sugar Tests (2)
-              </button>
-            </div>
-          </div>
-
-          <div className="products-grid">
-            {filteredProducts.map(product => (
-              <ProductCard key={product.slug} product={product} />
-            ))}
-          </div>
-
-          <div className="products-bottom-bar font-mono">
-            <span>VERIFIED FACTORY DOCUMENTATION · 100% MACHINED & ASSEMBLED IN SAVOGNA D'ISONZO</span>
-            <button
-              className="btn btn-secondary btn-sm"
-              onClick={() => onOpenEnquiry && onOpenEnquiry('', 'Sales')}
-            >
-              <span>Request Full Metrology Datasheet</span>
-              <ArrowUpRight size={14} />
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. ENGINEERING EXPERTISE & LONGEVITY (Graphite Industrial Depth) */}
-      <section className="section bg-graphite bg-grid-blueprint-dark">
-        <div className="container">
-          <div className="expertise-grid">
-            <div className="expertise-text-col">
-              <span className="badge-overline dark">THE TOMSIC PHILOSOPHY</span>
-              <h2 className="text-white" style={{ fontSize: 'clamp(2rem, 3.5vw, 2.85rem)', marginBottom: '1.25rem' }}>
-                Rejecting planned obsolescence in industrial metrology.
-              </h2>
-              <p style={{ color: '#B2C0CB', fontSize: '1.075rem', lineHeight: '1.7', marginBottom: '2rem' }}>
-                Most testing equipment vendors lock spinning mills into proprietary bus architectures and expensive recurring software licenses. At Tomsic, we engineer our instruments on standard commercial PC hardware with Microsoft .NET architecture. If a computer component fails a decade later, it can be replaced locally—without proprietary technician dependencies.
-              </p>
-
-              <div className="expertise-pillars-grid">
-                {companyData.manufacturingPhilosophy.pillars.map((pillar, i) => (
-                  <div key={i} className="expertise-pillar-card">
-                    <div className="pillar-num font-mono">0{i + 1}</div>
-                    <h4 style={{ color: '#FFFFFF', fontSize: '1.05rem', marginBottom: '0.4rem' }}>{pillar.title}</h4>
-                    <p style={{ color: '#8E9EA9', fontSize: '0.85rem', lineHeight: '1.55' }}>{pillar.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="expertise-visual-col">
-              <div className="expertise-card-highlight">
-                <span className="drafting-crosshair" style={{ top: '8px', right: '8px' }} />
-                <div className="highlight-tag font-mono">INTER-MACHINE SYNCHRONIZATION</div>
-                <h3 style={{ color: '#FFFFFF', fontSize: '1.45rem', margin: '0.5rem 0 1rem' }}>
-                  Link Job Database Architecture
-                </h3>
-                <p style={{ color: '#A4B2BC', fontSize: '0.925rem', lineHeight: '1.6' }}>
-                  Tomsic testing benches share an integrated relational SQL database. When the TMS45 Count Analyser calculates actual linear density, it transmits data automatically to the "easy" Evenness Tester and TensoTester3, eliminating transcription error across 25 years of stored mill history.
-                </p>
-
-                <div className="expertise-stat-box">
-                  <div className="stat-item">
-                    <span className="stat-number tabular-nums font-mono">25</span>
-                    <span className="stat-label">Years of Instant Database History</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-number tabular-nums font-mono">3</span>
-                    <span className="stat-label">Clicks to Run Any Standard Protocol</span>
-                  </div>
-                </div>
-
-                <div className="divider-dark" style={{ margin: '1.5rem 0' }} />
-
-                <div className="expertise-client-quote">
-                  <p style={{ color: '#EBF0F3', fontStyle: 'italic', fontSize: '0.925rem', lineHeight: '1.5' }}>
-                    "Approved and relied upon by premier global textile players including Ermenegildo Zegna and Botto Giuseppe."
-                  </p>
-                  <span className="quote-source font-mono">
-                    VERIFIED OFFICIAL CLIENT REFERENCE
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. INTERNATIONAL PRESENCE (Verified Across 30+ Countries) */}
-      <section className="section bg-white border-top-hairline">
-        <div className="container">
-          <SectionHeading
-            overline="GLOBAL DISTRIBUTION"
-            title="Supplying spinning mills in over 30 countries."
-            subtitle="Local agents and factory-certified technical service engineers across five continents."
-            linkText="View Full Worldwide Agent Network"
-            linkHref="/contact"
-          />
-
-          <div className="global-presence-grid">
-            {globalNetworkData.regions.map((reg, idx) => (
-              <div key={idx} className="region-summary-card">
-                <div className="region-header">
-                  <Globe size={17} color="#A48256" />
-                  <h4 className="region-title">{reg.name}</h4>
-                </div>
-
-                <ul className="region-country-list">
-                  {reg.countries.map((c, cIdx) => (
-                    <li key={cIdx} className="region-country-item">
-                      <div className="country-info">
-                        <strong>{c.name}</strong>
-                        <span className="country-city">{c.city}</span>
-                      </div>
-                      <span className="country-role-tag font-mono">{c.role.includes('Headquarters') ? 'Global HQ' : 'Agent Hub'}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="global-support-banner">
-            <div className="support-banner-inner">
-              <div>
-                <span className="badge-overline">DIRECT FACTORY COMMITMENT</span>
-                <h3 style={{ fontSize: '1.35rem', marginTop: '0.2rem' }}>
-                  Need technical assistance or genuine Italian spare parts?
-                </h3>
-                <p style={{ color: '#4D606E', fontSize: '0.9375rem', marginTop: '0.25rem' }}>
-                  Our technical after-sales department in Savogna d'Isonzo offers direct remote diagnostic support and priority global spare part dispatch.
-                </p>
-              </div>
-              <div className="support-banner-actions">
-                <a href="tel:+390481882032" className="btn btn-secondary">
-                  <span>Call Service: +39 (0481) 882032</span>
-                </a>
                 <button
-                  className="btn btn-primary"
-                  onClick={() => onOpenEnquiry && onOpenEnquiry('', 'Service')}
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => onOpenEnquiry && onOpenEnquiry('easy Evenness Tester', 'Sales')}
                 >
-                  <span>Open Service Ticket</span>
-                  <ArrowUpRight size={14} />
+                  <span>Request Factory Quotation</span>
+                  <ArrowUpRight size={15} />
                 </button>
               </div>
             </div>
@@ -767,34 +402,162 @@ export function HomePage({ onOpenEnquiry }) {
         </div>
       </section>
 
-      {/* 8. NEWS & EXHIBITIONS (Verified Source Material) */}
-      <section className="section bg-warm-ivory border-top-hairline">
+      {/* 5. THE THREE SPECIALIZED DIVISIONS */}
+      <section className="section bg-white border-top-hairline">
         <div className="container">
-          <SectionHeading
-            overline="EXHIBITIONS & RELEASES"
-            title="News & International Trade Fairs"
-            subtitle="Meet Tomsic engineers at premier international textile technology events."
-            linkText="All News & Events"
-            linkHref="/news"
-          />
+          <div className="section-header-editorial">
+            <span className="badge-overline">SPECIALIZED DIVISIONS</span>
+            <h2 className="section-title-editorial">Three Pillars of Industrial Competence.</h2>
+            <p className="section-lead-editorial">
+              Each division provides dedicated instrumentation engineered for specific mill operations.
+            </p>
+          </div>
 
-          <div className="news-cards-grid">
+          <div className="divisions-editorial-grid">
+            {/* Division 1: Laboratory */}
+            <article className="division-editorial-card">
+              <div className="div-media">
+                <img
+                  src="/assets/tensotester3-overview.jpg"
+                  alt="Laboratory Testing Solutions"
+                  className="div-img"
+                  loading="lazy"
+                />
+              </div>
+              <div className="div-body">
+                <span className="div-num font-mono">01</span>
+                <h3 className="div-title">Laboratory Testing Solutions</h3>
+                <p className="div-desc">
+                  Evenness testers, tensile strength meters, and count analyzers compatible with ISO 2062 and ASTM standards. Operates on standard Windows PC platforms.
+                </p>
+                <Link to="/solutions/laboratory" className="div-link">
+                  <span>Explore Laboratory Division</span>
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+            </article>
+
+            {/* Division 2: Spinning */}
+            <article className="division-editorial-card">
+              <div className="div-media">
+                <img
+                  src="/assets/card-autoleveller-tms25.jpg"
+                  alt="Spinning Mill Automation"
+                  className="div-img"
+                  loading="lazy"
+                />
+              </div>
+              <div className="div-body">
+                <span className="div-num font-mono">02</span>
+                <h3 className="div-title">Spinning Automation</h3>
+                <p className="div-desc">
+                  Closed-loop digital drafting and autoleveller retrofit kits for carding machines, cotton drawframes, and wool/acrylic gill boxes.
+                </p>
+                <Link to="/solutions/spinning" className="div-link">
+                  <span>Explore Spinning Division</span>
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+            </article>
+
+            {/* Division 3: Sugar */}
+            <article className="division-editorial-card">
+              <div className="div-media">
+                <img
+                  src="/assets/cotton-sugar-tms54.jpg"
+                  alt="Sugar Contamination Diagnostics"
+                  className="div-img"
+                  loading="lazy"
+                />
+              </div>
+              <div className="div-body">
+                <span className="div-num font-mono">03</span>
+                <h3 className="div-title">Sugar Contamination Diagnostics</h3>
+                <p className="div-desc">
+                  Chemical colorimetric testing instruments and Glucosil neutralizing solutions to detect and treat sticky honeydew cotton in 15 minutes.
+                </p>
+                <Link to="/solutions/sugar" className="div-link">
+                  <span>Explore Sugar Division</span>
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. ENGINEERING PHILOSOPHY & LONGEVITY (Graphite Depth) */}
+      <section className="section bg-graphite text-white border-top-hairline">
+        <div className="container">
+          <div className="philosophy-layout">
+            <div className="philosophy-header">
+              <span className="badge-overline dark">THE TOMSIC PHILOSOPHY</span>
+              <h2 className="philosophy-headline">
+                Rejecting Planned Obsolescence in Industrial Metrology.
+              </h2>
+              <p className="philosophy-lead">
+                Most testing instrument vendors lock spinning mills into proprietary bus architectures and expensive recurring software contracts. We engineer our systems on standard commercial PC hardware with open Microsoft .NET architecture. If a computer component fails after 15 years, it can be replaced locally—without proprietary technician dependencies.
+              </p>
+            </div>
+
+            <div className="philosophy-pillars-row">
+              <div className="phil-pillar">
+                <span className="phil-num font-mono">01</span>
+                <h4 className="phil-title">Open Architecture</h4>
+                <p className="phil-desc">Standard industrial PC motherboards and commercial Windows platforms ensure components are serviceable anywhere on earth.</p>
+              </div>
+              <div className="phil-pillar">
+                <span className="phil-num font-mono">02</span>
+                <h4 className="phil-title">Link Job Synchronization</h4>
+                <p className="phil-desc">Testing benches share a unified relational SQL database, eliminating transcription errors across 25 years of stored mill history.</p>
+              </div>
+              <div className="phil-pillar">
+                <span className="phil-num font-mono">03</span>
+                <h4 className="phil-title">Direct Factory Accountability</h4>
+                <p className="phil-desc">Direct access to our engineering team in Savogna d'Isonzo. No bureaucratic call centers or distributor delays.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. DISPATCHES & INTERNATIONAL EXHIBITIONS */}
+      <section className="section bg-white border-top-hairline">
+        <div className="container">
+          <div className="section-header-editorial">
+            <div className="flex justify-between items-end flex-wrap gap-4">
+              <div>
+                <span className="badge-overline">DISPATCHES & TRADE FAIRS</span>
+                <h2 className="section-title-editorial">News & International Exhibitions</h2>
+                <p className="section-lead-editorial">
+                  Meet Tomsic engineers at premier international textile technology events.
+                </p>
+              </div>
+              <Link to="/news" className="editorial-action-link">
+                <span>All Announcements & Events</span>
+                <ArrowUpRight size={15} />
+              </Link>
+            </div>
+          </div>
+
+          <div className="news-editorial-grid">
             {newsData.slice(0, 3).map(item => (
-              <article key={item.slug} className="news-card">
-                <div className="news-card-media">
+              <article key={item.slug} className="news-editorial-card">
+                <div className="news-img-box">
                   <img
                     src={item.image}
                     alt={item.title}
                     className="news-card-img"
                     loading="lazy"
                   />
-                  <span className="news-type-badge font-mono">{item.type}</span>
+                  <span className="news-type-tag font-mono">{item.type}</span>
                 </div>
 
-                <div className="news-card-content">
-                  <div className="news-date-location font-mono">
-                    <span className="news-date">{item.date}</span>
-                    <span className="news-loc">• {item.location}</span>
+                <div className="news-body-box">
+                  <div className="news-meta-line font-mono">
+                    <span>{item.date}</span>
+                    <span>•</span>
+                    <span>{item.location}</span>
                   </div>
 
                   <h3 className="news-card-title">
@@ -803,12 +566,10 @@ export function HomePage({ onOpenEnquiry }) {
 
                   <p className="news-card-excerpt">{item.excerpt}</p>
 
-                  <div className="news-card-footer">
-                    <Link to="/news" className="btn-link">
-                      <span>Read Full Report</span>
-                      <ArrowRight size={14} />
-                    </Link>
-                  </div>
+                  <Link to="/news" className="news-card-cta">
+                    <span>Read Full Dispatch</span>
+                    <ArrowRight size={13} />
+                  </Link>
                 </div>
               </article>
             ))}
@@ -816,46 +577,51 @@ export function HomePage({ onOpenEnquiry }) {
         </div>
       </section>
 
-      {/* 9. STRONG ENQUIRY CTA SECTION */}
-      <section className="section-lg bg-graphite text-white enquiry-cta-section bg-grid-blueprint-dark">
+      {/* 8. CONFIDENT FACTORY ENQUIRY */}
+      <section className="section bg-warm-ivory border-top-hairline">
         <div className="container">
-          <div className="enquiry-cta-box">
-            <span className="badge-overline dark">START A CONSULTATION</span>
-            <h2 className="enquiry-cta-headline">
-              Let’s find the right solution for your application.
-            </h2>
-            <p className="enquiry-cta-lead">
-              Whether you are equipping a modern textile testing laboratory, retrofitting carding and drawframe autolevellers, or addressing sticky cotton challenges—our Italian engineering team is ready to assist.
-            </p>
+          <div className="enquiry-editorial-box">
+            <div className="enquiry-text-col">
+              <span className="badge-overline accent">START A TECHNICAL DIALOGUE</span>
+              <h2 className="enquiry-headline">
+                Connect Directly with Factory Engineers in Savogna d'Isonzo.
+              </h2>
+              <p className="enquiry-lead">
+                Whether you are equipping a modern textile testing laboratory, modernizing carding autolevellers, or addressing sticky cotton challenges—our Italian engineering team is ready to assist.
+              </p>
 
-            <div className="enquiry-cta-actions">
-              <button
-                className="btn btn-bronze"
-                onClick={() => onOpenEnquiry && onOpenEnquiry('', 'Sales')}
-              >
-                <span>Request Direct Factory Quotation</span>
-                <ArrowUpRight size={16} />
-              </button>
+              <div className="enquiry-actions-group">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => onOpenEnquiry && onOpenEnquiry('', 'Sales')}
+                >
+                  <span>Request Factory Quotation</span>
+                  <ArrowUpRight size={15} />
+                </button>
 
-              <Link to="/contact" className="btn btn-secondary-dark">
-                <span>View Contact Details & Agents</span>
-              </Link>
+                <Link to="/contact" className="btn btn-secondary">
+                  <span>Worldwide Agent Directory</span>
+                </Link>
+              </div>
             </div>
 
-            <div className="enquiry-contact-chips font-mono">
-              <div className="chip-item">
-                <span className="chip-label">General Enquiries:</span>
-                <a href="mailto:tomsic@tomsic.it" className="chip-val">tomsic@tomsic.it</a>
+            <div className="enquiry-contacts-col font-mono">
+              <div className="contact-item">
+                <span className="contact-label">COMMERCIAL DESK</span>
+                <a href="mailto:sales@tomsic.it" className="contact-link">sales@tomsic.it</a>
               </div>
-              <div className="chip-sep">/</div>
-              <div className="chip-item">
-                <span className="chip-label">Direct Commercial Office:</span>
-                <a href="mailto:sales@tomsic.it" className="chip-val">sales@tomsic.it</a>
+              <div className="contact-item">
+                <span className="contact-label">TECHNICAL AFTER-SALES</span>
+                <a href="mailto:service@tomsic.it" className="contact-link">service@tomsic.it</a>
               </div>
-              <div className="chip-sep">/</div>
-              <div className="chip-item">
-                <span className="chip-label">Factory Switchboard:</span>
-                <span className="chip-val tabular-nums">+39 (0481) 882320</span>
+              <div className="contact-item">
+                <span className="contact-label">FACTORY SWITCHBOARD</span>
+                <a href="tel:+390481882320" className="contact-link tabular-nums">+39 (0481) 882320</a>
+              </div>
+              <div className="contact-item">
+                <span className="contact-label">FACILITY LOCATION</span>
+                <span className="contact-text">via Malnisce, 3/B · 34070 Savogna d’Isonzo (GO), Italy</span>
               </div>
             </div>
           </div>
@@ -863,1175 +629,779 @@ export function HomePage({ onOpenEnquiry }) {
       </section>
 
       <style>{`
-        /* Hero Styling */
-        .hero-section {
-          position: relative;
-          background-color: var(--color-warm-ivory);
+        .homepage-editorial {
+          width: 100%;
+          overflow-x: hidden;
+        }
+
+        /* 1. HERO EDITORIAL */
+        .hero-editorial {
           padding-top: 4.5rem;
-          padding-bottom: 5.5rem;
-          border-bottom: 1px solid var(--border-hairline);
-          overflow: hidden;
+          padding-bottom: 5rem;
+          background-color: var(--color-warm-ivory);
         }
-        .hero-container {
-          position: relative;
-          z-index: 2;
+        .hero-header-block {
+          max-width: 920px;
+          margin-bottom: 3.5rem;
         }
-        .hero-grid {
-          display: grid;
-          grid-template-columns: 1.15fr 0.85fr;
-          gap: 3.5rem;
-          align-items: center;
-        }
-        .hero-status-strip {
-          display: flex;
-          align-items: center;
-          gap: 1.25rem;
-          margin-bottom: 1.5rem;
-          flex-wrap: wrap;
-        }
-        .heritage-tag {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          font-size: 0.725rem;
-          font-weight: 700;
+        .hero-dateline {
+          display: block;
+          font-size: 0.75rem;
           letter-spacing: 0.08em;
-          color: var(--color-muted-bronze);
-          background-color: var(--color-warm-ivory-deep);
-          padding: 0.35rem 0.75rem;
-          border-radius: var(--radius-xs);
-          border: 1px solid rgba(20, 29, 36, 0.12);
-        }
-        .heritage-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background-color: var(--color-muted-bronze);
+          color: var(--color-steel-blue);
+          margin-bottom: 1.25rem;
         }
         .hero-headline {
           font-family: var(--font-heading);
-          font-size: clamp(2.5rem, 4.8vw, 4rem);
-          font-weight: 800;
-          line-height: 1.08;
+          font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+          font-weight: 700;
+          line-height: 1.05;
+          letter-spacing: -0.03em;
           color: var(--color-graphite);
-          letter-spacing: -0.035em;
           margin-bottom: 1.5rem;
+          text-wrap: balance;
         }
         .hero-lead {
-          font-size: 1.225rem;
-          line-height: 1.62;
-          color: #384A59;
+          font-size: clamp(1.1rem, 2vw, 1.3rem);
+          line-height: 1.6;
+          color: #3C4A54;
+          max-width: 68ch;
           margin-bottom: 2.25rem;
-          max-width: 640px;
         }
-        .hero-cta-group {
+        .hero-cta-row {
           display: flex;
           align-items: center;
-          gap: 1rem;
-          flex-wrap: wrap;
-          margin-bottom: 3.25rem;
-        }
-        .hero-metrics-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
           gap: 1.25rem;
-          padding-top: 2rem;
-          border-top: 1px solid var(--border-hairline);
+          flex-wrap: wrap;
         }
-        .hero-metric-cell {
+
+        /* Machinery Hero Canvas */
+        .hero-image-canvas {
+          margin-top: 2rem;
+          background-color: #FFFFFF;
+          border: 1px solid var(--border-hairline);
+          border-radius: var(--radius-sm);
+          padding: 2.5rem;
+          box-shadow: var(--shadow-subtle);
+        }
+        .hero-image-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 380px;
+          max-height: 520px;
+          padding: 1.5rem;
+        }
+        .hero-machinery-img {
+          max-width: 100%;
+          max-height: 480px;
+          height: auto;
+          object-fit: contain;
+        }
+        .hero-image-caption {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-top: 1.5rem;
+          margin-top: 1rem;
+          border-top: 1px solid var(--border-hairline);
+          font-size: 0.75rem;
+          color: var(--color-steel-blue);
+          flex-wrap: wrap;
+          gap: 0.75rem;
+        }
+        .caption-dot {
+          color: var(--border-subtle);
+        }
+        .caption-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          color: var(--color-accent);
+          font-weight: 600;
+        }
+
+        /* 2. STATEMENT SECTION */
+        .statement-section {
+          padding-top: 6rem;
+          padding-bottom: 6rem;
+          background-color: var(--color-white);
+        }
+        .statement-grid {
+          display: grid;
+          grid-template-columns: 1.15fr 0.85fr;
+          gap: 4.5rem;
+          align-items: start;
+          margin-bottom: 4.5rem;
+        }
+        .statement-quote {
+          font-family: var(--font-heading);
+          font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+          line-height: 1.18;
+          letter-spacing: -0.025em;
+          color: var(--color-graphite);
+          font-weight: 700;
+          text-wrap: balance;
+        }
+        .statement-desc {
+          font-size: 1.05rem;
+          line-height: 1.68;
+          color: #4A5863;
+          margin-bottom: 1.25rem;
+        }
+        .statement-meta-row {
+          display: flex;
+          gap: 2.5rem;
+          padding-top: 1.5rem;
+          margin-top: 1.5rem;
+          border-top: 1px solid var(--border-hairline);
+          flex-wrap: wrap;
+        }
+        .meta-fact {
           display: flex;
           flex-direction: column;
         }
-        .metric-val {
-          font-size: 1.6rem;
-          font-weight: 800;
+        .fact-num {
+          font-size: 1.75rem;
+          font-weight: 700;
           color: var(--color-graphite);
           line-height: 1.1;
         }
-        .metric-lbl {
-          font-size: 0.725rem;
-          color: #647887;
+        .fact-label {
+          font-size: 0.75rem;
+          color: var(--color-steel-blue);
           margin-top: 0.25rem;
-          line-height: 1.35;
         }
 
-        /* Machinery Hero Frame */
-        .machinery-hero-frame {
-          position: relative;
-          background-color: #FFFFFF;
-          border: 1px solid var(--border-subtle);
-          border-radius: var(--radius-sm);
-          padding: 1.75rem;
-          box-shadow: var(--shadow-card);
-        }
-        .machinery-frame-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding-bottom: 1rem;
-          border-bottom: 1px solid var(--border-hairline);
-          margin-bottom: 1.25rem;
-        }
-        .machinery-img-wrap {
-          background-color: #FAF9F6;
-          border: 1px solid var(--border-hairline);
-          border-radius: var(--radius-xs);
-          padding: 1.5rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-height: 310px;
-        }
-        .hero-machine-img {
-          max-height: 290px;
-          width: auto;
-          object-fit: contain;
-          filter: drop-shadow(0 8px 20px rgba(20, 29, 36, 0.08));
-        }
-        .machinery-specs-overlay {
+        .statement-diptych {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 0.75rem;
+          grid-template-columns: 1.2fr 0.8fr;
+          gap: 2rem;
+        }
+        .diptych-card {
           background-color: var(--color-warm-ivory);
           border: 1px solid var(--border-hairline);
-          padding: 0.75rem 1rem;
           border-radius: var(--radius-xs);
-          margin-top: 1.25rem;
+          overflow: hidden;
         }
-        .spec-chip {
-          display: flex;
-          flex-direction: column;
+        .diptych-img {
+          width: 100%;
+          height: 320px;
+          object-fit: cover;
+          display: block;
         }
-        .spec-label {
-          font-size: 0.65rem;
-          font-family: var(--font-mono);
+        .diptych-caption {
+          padding: 1rem 1.25rem;
+          font-size: 0.725rem;
           color: var(--color-steel-blue);
-          letter-spacing: 0.06em;
-        }
-        .spec-value {
-          font-size: 0.8125rem;
-          color: var(--color-graphite);
-          margin-top: 0.15rem;
-        }
-        .machinery-frame-footer {
-          margin-top: 1.25rem;
-          padding-top: 1rem;
+          background-color: #FFFFFF;
           border-top: 1px solid var(--border-hairline);
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1rem;
-        }
-        .footer-legend strong {
-          display: block;
-          font-size: 0.875rem;
-          color: var(--color-graphite);
-        }
-        .footer-legend span {
-          display: block;
-          font-size: 0.75rem;
-          color: #647887;
-          margin-top: 0.15rem;
         }
 
-        /* Stage Navigator */
-        .stage-selector-bar {
+        /* 3. PROCESS PIPELINE SECTION */
+        .section-header-editorial {
+          margin-bottom: 3.5rem;
+          max-width: 840px;
+        }
+        .section-title-editorial {
+          font-size: clamp(2rem, 3.5vw, 2.85rem);
+          font-weight: 700;
+          color: var(--color-graphite);
+          line-height: 1.15;
+          letter-spacing: -0.025em;
+          margin: 0.5rem 0 0.85rem;
+          text-wrap: balance;
+        }
+        .section-lead-editorial {
+          font-size: 1.125rem;
+          color: #4D606E;
+          line-height: 1.6;
+        }
+
+        .process-pipeline-nav {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 0.75rem;
-          margin-bottom: 2rem;
-        }
-        .stage-nav-pill {
-          background-color: var(--color-warm-ivory);
-          border: 1px solid var(--border-subtle);
-          padding: 0.85rem 1rem;
+          border: 1px solid var(--border-hairline);
           border-radius: var(--radius-xs);
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          cursor: pointer;
-          transition: all var(--transition-fast);
+          background-color: var(--color-warm-ivory);
+          margin-bottom: 2.5rem;
+          overflow: hidden;
+        }
+        .pipeline-nav-btn {
+          padding: 1.25rem 1.5rem;
           text-align: left;
-        }
-        .stage-nav-pill:hover {
-          border-color: var(--color-graphite);
-          background-color: #FFFFFF;
-        }
-        .stage-nav-pill.active {
-          background-color: var(--color-graphite);
-          border-color: var(--color-graphite);
-          color: #FFFFFF;
-        }
-        .stage-nav-num {
-          font-size: 0.8125rem;
-          font-weight: 700;
-          color: var(--color-muted-bronze);
-        }
-        .stage-nav-pill.active .stage-nav-num {
-          color: #D6BC96;
-        }
-        .stage-nav-name {
-          font-family: var(--font-heading);
-          font-size: 0.875rem;
-          font-weight: 700;
-        }
-        .stage-active-panel {
-          background-color: #FAF9F6;
-          border: 1px solid var(--border-subtle);
-          border-radius: var(--radius-sm);
-          padding: 2.5rem;
-          display: grid;
-          grid-template-columns: 1.15fr 1fr;
-          gap: 3.5rem;
-          align-items: start;
-        }
-        .stage-panel-title {
-          font-size: 1.75rem;
-          margin: 0.4rem 0 0.25rem;
-        }
-        .stage-panel-focus {
-          font-size: 0.8125rem;
-          color: var(--color-muted-bronze);
-          font-weight: 600;
-          margin-bottom: 1.25rem;
-        }
-        .stage-panel-desc {
-          font-size: 1rem;
-          line-height: 1.65;
-          color: #4D606E;
-          margin-bottom: 2rem;
-        }
-        .stage-products-row {
+          background: transparent;
+          border: none;
+          border-right: 1px solid var(--border-hairline);
+          cursor: pointer;
           display: flex;
           flex-direction: column;
-          gap: 0.85rem;
+          gap: 0.35rem;
+          transition: background-color var(--transition-fast);
         }
-        .stage-product-mini-card {
+        .pipeline-nav-btn:last-child {
+          border-right: none;
+        }
+        .pipeline-nav-btn:hover {
+          background-color: rgba(255, 255, 255, 0.7);
+        }
+        .pipeline-nav-btn.active {
           background-color: #FFFFFF;
-          border: 1px solid var(--border-hairline);
-          border-radius: var(--radius-xs);
-          padding: 0.85rem 1rem;
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+          box-shadow: inset 0 3px 0 var(--color-accent);
         }
-        .stage-product-mini-card:hover {
-          border-color: var(--color-muted-bronze);
-          box-shadow: var(--shadow-card);
-        }
-        .mini-card-thumb {
-          width: 56px;
-          height: 56px;
-          background: #FAF9F6;
-          border: 1px solid var(--border-hairline);
-          border-radius: var(--radius-xs);
-          padding: 0.25rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-        }
-        .mini-card-thumb img {
-          max-height: 100%;
-          width: auto;
-          object-fit: contain;
-        }
-        .mini-card-info {
-          flex-grow: 1;
-        }
-        .mini-card-code {
-          font-size: 0.6875rem;
-          color: var(--color-steel-blue);
-          display: block;
-        }
-        .mini-card-name {
-          font-size: 0.9375rem;
-          color: var(--color-graphite);
-          display: block;
-        }
-        .mini-card-tagline {
-          font-size: 0.775rem;
-          color: #647887;
-          display: block;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          max-width: 280px;
-        }
-        .mini-card-arrow {
-          color: var(--color-steel-blue);
-          flex-shrink: 0;
-          transition: transform var(--transition-fast), color var(--transition-fast);
-        }
-        .stage-product-mini-card:hover .mini-card-arrow {
-          transform: translate(2px, -2px);
-          color: var(--color-muted-bronze);
-        }
-
-        /* Flagship Spotlight */
-        .flagship-spotlight-box {
-          position: relative;
-          background-color: #FFFFFF;
-          border: 1px solid var(--border-subtle);
-          border-radius: var(--radius-sm);
-          padding: 3.5rem;
-          box-shadow: var(--shadow-card);
-        }
-        .flagship-grid {
-          display: grid;
-          grid-template-columns: 1fr 1.15fr;
-          gap: 4rem;
-          align-items: center;
-        }
-        .flagship-image-card {
-          position: relative;
-          background-color: #FAF9F6;
-          border: 1px solid var(--border-hairline);
-          border-radius: var(--radius-xs);
-          padding: 2.5rem 2rem 1.5rem;
-        }
-        .flagship-badge {
-          position: absolute;
-          top: 1rem;
-          left: 1rem;
-          background-color: var(--color-graphite);
-          color: #FFFFFF;
-          font-size: 0.6875rem;
-          font-weight: 700;
-          letter-spacing: 0.1em;
-          padding: 0.25rem 0.6rem;
-          border-radius: var(--radius-xs);
-        }
-        .flagship-hero-img {
-          width: 100%;
-          max-height: 360px;
-          object-fit: contain;
-        }
-        .flagship-caption-row {
-          margin-top: 1.5rem;
-          padding-top: 0.85rem;
-          border-top: 1px solid var(--border-hairline);
-          display: flex;
-          justify-content: space-between;
-          font-size: 0.6875rem;
-          color: var(--color-steel-blue);
-        }
-        .flagship-meta {
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
+        .btn-stage-num {
           font-size: 0.75rem;
+          font-weight: 700;
           color: var(--color-steel-blue);
-          margin-bottom: 0.75rem;
         }
-        .flagship-title {
-          font-size: clamp(2.2rem, 3.5vw, 3rem);
-          margin-bottom: 0.35rem;
-          line-height: 1.12;
+        .pipeline-nav-btn.active .btn-stage-num {
+          color: var(--color-accent);
         }
-        .flagship-subtitle {
-          font-size: 1.15rem;
-          font-weight: 600;
-          color: #5C7080;
-          margin-bottom: 1.25rem;
-          line-height: 1.45;
-        }
-        .flagship-text {
-          font-size: 1rem;
-          line-height: 1.65;
-          color: #384A59;
-          margin-bottom: 2rem;
-        }
-        .flagship-features-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 1.25rem;
-          margin-bottom: 2.25rem;
-          padding-top: 1.5rem;
-          border-top: 1px solid var(--border-hairline);
-        }
-        .flagship-feat-item {
-          display: flex;
-          flex-direction: column;
-        }
-        .feat-val {
-          font-size: 1.25rem;
+        .btn-stage-name {
+          font-family: var(--font-heading);
+          font-size: 0.95rem;
+          font-weight: 700;
           color: var(--color-graphite);
-        }
-        .feat-lbl {
-          font-size: 0.775rem;
-          color: #647887;
-          margin-top: 0.2rem;
-        }
-        .flagship-action-row {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          flex-wrap: wrap;
+          line-height: 1.3;
         }
 
-        /* Heritage Editorial Section (Architectural Precision Presentation) */
-        .heritage-editorial-grid {
+        .stage-editorial-spread {
           display: grid;
-          grid-template-columns: 1fr 1.15fr;
-          gap: 4.5rem;
-          align-items: start;
-        }
-        .heritage-main-frame {
-          background: #FFFFFF;
-          border: 1px solid var(--border-subtle);
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 3.5rem;
+          background-color: #FFFFFF;
+          border: 1px solid var(--border-hairline);
           border-radius: var(--radius-sm);
-          padding: 1rem;
-          box-shadow: var(--shadow-card);
-        }
-        .heritage-facility-wrapper {
-          position: relative;
-          overflow: hidden;
-          border-radius: var(--radius-xs);
-          background-color: var(--color-warm-ivory);
-        }
-        .heritage-facility-img {
-          width: 100%;
-          height: 340px;
-          object-fit: cover;
-          display: block;
-        }
-        .facility-badge-strip {
-          position: absolute;
-          bottom: 0.75rem;
-          left: 0.75rem;
-          background: rgba(20, 29, 36, 0.9);
-          backdrop-filter: blur(6px);
-          color: #FFFFFF;
-          font-size: 0.6875rem;
-          letter-spacing: 0.05em;
-          padding: 0.35rem 0.75rem;
-          border-radius: var(--radius-xs);
-          display: flex;
+          padding: 3rem;
           align-items: center;
-          gap: 0.45rem;
         }
-        .facility-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background-color: var(--color-precision-green);
-          box-shadow: 0 0 0 2px rgba(41, 122, 88, 0.4);
-        }
-        .heritage-diptych-row {
-          display: grid;
-          grid-template-columns: 145px 1fr;
-          gap: 1rem;
-          margin-top: 1rem;
-          padding-top: 1rem;
-          border-top: 1px solid var(--border-hairline);
-        }
-        .heritage-craft-thumb {
-          position: relative;
-          height: 120px;
-          border-radius: var(--radius-xs);
-          overflow: hidden;
-          border: 1px solid var(--border-hairline);
-          background: var(--color-warm-ivory);
-        }
-        .craft-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center 30%;
-        }
-        .craft-tag {
-          position: absolute;
-          top: 8px;
-          left: 8px;
-          background: rgba(20, 29, 36, 0.82);
-          backdrop-filter: blur(4px);
-          -webkit-backdrop-filter: blur(4px);
-          color: #FFFFFF;
-          font-size: 0.625rem;
-          font-weight: 600;
-          letter-spacing: 0.08em;
-          padding: 0.25rem 0.5rem;
-          border-radius: var(--radius-xs);
-          border: 1px solid rgba(255, 255, 255, 0.16);
-          line-height: 1;
-        }
-        .heritage-telemetry-block {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 0.65rem 1rem;
-          background-color: var(--color-warm-ivory);
-          border: 1px solid var(--border-hairline);
-          padding: 0.85rem 1rem;
-          border-radius: var(--radius-xs);
-          align-content: center;
-        }
-        .telemetry-item {
-          display: flex;
-          flex-direction: column;
-        }
-        .tel-label {
-          font-size: 0.625rem;
-          color: var(--color-steel-blue);
+        .stage-overline {
+          font-size: 0.75rem;
+          color: var(--color-accent);
           letter-spacing: 0.06em;
+          display: block;
+          margin-bottom: 0.5rem;
         }
-        .tel-val {
-          font-size: 0.8125rem;
+        .stage-heading {
+          font-size: 1.85rem;
+          font-weight: 700;
           color: var(--color-graphite);
-          font-weight: 600;
-          letter-spacing: -0.01em;
-        }
-        .tel-val.text-precision {
-          color: var(--color-precision-green);
-        }
-        .heritage-main-title {
-          font-size: clamp(2rem, 3.2vw, 2.75rem);
-          line-height: 1.15;
-          margin-bottom: 1.25rem;
-        }
-        .heritage-lead-para {
-          font-size: 1.15rem;
-          line-height: 1.65;
-          color: #273642;
-          margin-bottom: 1.25rem;
-        }
-        .heritage-sub-para {
-          font-size: 0.975rem;
-          line-height: 1.65;
-          color: #384A59;
           margin-bottom: 1.75rem;
         }
-        .heritage-pillars-list {
+        .stage-editorial-comparison {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          padding-bottom: 2rem;
+          border-bottom: 1px solid var(--border-hairline);
+          margin-bottom: 2rem;
+        }
+        .comparison-title {
+          font-size: 0.725rem;
+          letter-spacing: 0.08em;
+          color: var(--color-steel-blue);
+          margin-bottom: 0.5rem;
+        }
+        .comparison-text {
+          font-size: 0.9375rem;
+          line-height: 1.6;
+          color: #3C4A54;
+        }
+        .instruments-label {
+          font-size: 0.725rem;
+          color: var(--color-steel-blue);
+          display: block;
+          margin-bottom: 0.85rem;
+        }
+        .stage-instruments-grid {
           display: flex;
           flex-direction: column;
-          gap: 0.85rem;
-          margin-bottom: 2.25rem;
+          gap: 0.65rem;
         }
-        .pillar-credential-box {
+        .stage-product-card {
           display: flex;
-          align-items: flex-start;
+          align-items: center;
           gap: 1rem;
+          padding: 0.75rem 1rem;
           background-color: var(--color-warm-ivory);
           border: 1px solid var(--border-hairline);
-          padding: 1rem 1.25rem;
           border-radius: var(--radius-xs);
           transition: border-color var(--transition-fast), background-color var(--transition-fast);
         }
-        .pillar-credential-box:hover {
-          border-color: var(--color-muted-bronze);
-          background-color: #FAF9F6;
+        .stage-product-card:hover {
+          background-color: #FFFFFF;
+          border-color: var(--color-accent);
         }
-        .pillar-index-badge {
-          font-size: 0.8125rem;
-          font-weight: 700;
-          color: var(--color-muted-bronze);
-          background: rgba(164, 130, 86, 0.12);
-          padding: 0.2rem 0.5rem;
-          border-radius: var(--radius-xs);
-          flex-shrink: 0;
-          margin-top: 1px;
-        }
-        .pillar-text-group h4 {
-          font-size: 0.975rem;
-          font-weight: 700;
-          color: var(--color-graphite);
-          margin-bottom: 0.2rem;
-          line-height: 1.3;
-        }
-        .pillar-text-group p {
-          font-size: 0.85rem;
-          color: #4D606E;
-          line-height: 1.5;
-          margin: 0;
-        }
-        .heritage-cta-strip {
+        .prod-thumb {
+          width: 48px;
+          height: 48px;
           display: flex;
           align-items: center;
-          gap: 1.5rem;
-          flex-wrap: wrap;
-          padding-top: 1rem;
-          border-top: 1px solid var(--border-hairline);
-        }
-        .acimit-cert-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.75rem;
-          background-color: #FAF9F6;
-          border: 1px solid var(--border-subtle);
-          padding: 0.5rem 0.85rem;
+          justify-content: center;
+          background-color: #FFFFFF;
           border-radius: var(--radius-xs);
+          padding: 4px;
         }
-        .acimit-logo-badge {
-          height: 28px;
-          width: auto;
+        .prod-thumb img {
+          max-width: 100%;
+          max-height: 100%;
           object-fit: contain;
         }
-        .acimit-cert-text {
+        .prod-details {
           display: flex;
           flex-direction: column;
-          line-height: 1.2;
+          flex-grow: 1;
         }
-        .acimit-cert-text .cert-org {
+        .prod-code {
           font-size: 0.6875rem;
-          font-weight: 700;
-          color: var(--color-graphite);
-          letter-spacing: 0.04em;
-        }
-        .acimit-cert-text .cert-origin {
-          font-size: 0.5625rem;
           color: var(--color-steel-blue);
-          letter-spacing: 0.06em;
         }
-
-        /* Products Section Header & Tabs */
-        .products-section-header {
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-          gap: 2rem;
-          margin-bottom: 2.5rem;
-          flex-wrap: wrap;
-        }
-        .product-filter-tabs {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          flex-wrap: wrap;
-        }
-        .filter-tab {
-          background-color: #FFFFFF;
-          border: 1px solid var(--border-subtle);
-          padding: 0.55rem 1rem;
-          border-radius: var(--radius-xs);
-          font-family: var(--font-body);
-          font-size: 0.8125rem;
-          font-weight: 600;
-          color: #4D606E;
-          cursor: pointer;
-          transition: all var(--transition-fast);
-        }
-        .filter-tab:hover {
-          border-color: var(--color-graphite);
+        .prod-name {
+          font-size: 0.9375rem;
           color: var(--color-graphite);
         }
-        .filter-tab.active {
-          background-color: var(--color-graphite);
-          border-color: var(--color-graphite);
-          color: #FFFFFF;
+        .prod-arrow {
+          color: var(--color-steel-blue);
+          transition: transform var(--transition-fast), color var(--transition-fast);
         }
-        .products-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 2rem;
+        .stage-product-card:hover .prod-arrow {
+          color: var(--color-accent);
+          transform: translate(2px, -2px);
         }
-        .products-bottom-bar {
-          margin-top: 3rem;
-          padding: 1.25rem 2rem;
-          background-color: #FFFFFF;
+        .stage-image-block {
+          background-color: var(--color-warm-ivory);
           border: 1px solid var(--border-hairline);
           border-radius: var(--radius-xs);
+          padding: 2rem;
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          font-size: 0.75rem;
-          color: var(--color-steel-blue);
-          flex-wrap: wrap;
-          gap: 1rem;
+          justify-content: center;
+          min-height: 380px;
+        }
+        .stage-large-img {
+          max-width: 100%;
+          max-height: 360px;
+          object-fit: contain;
         }
 
-        /* Engineering Expertise Section */
-        .expertise-grid {
+        /* 4. FLAGSHIP SECTION */
+        .flagship-feature-grid {
           display: grid;
           grid-template-columns: 1.15fr 0.85fr;
-          gap: 4rem;
+          gap: 4.5rem;
           align-items: center;
         }
-        .expertise-pillars-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 1.5rem;
-        }
-        .expertise-pillar-card {
-          background-color: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          padding: 1.5rem;
-          border-radius: var(--radius-xs);
-        }
-        .pillar-num {
-          font-size: 0.8125rem;
-          font-weight: 800;
-          color: var(--color-muted-bronze);
-          margin-bottom: 0.5rem;
-        }
-        .expertise-card-highlight {
-          position: relative;
-          background-color: var(--surface-dark-card);
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          border-radius: var(--radius-sm);
-          padding: 2.75rem 2.5rem;
-          box-shadow: var(--shadow-elevated);
-        }
-        .highlight-tag {
-          font-size: 0.6875rem;
-          font-weight: 700;
-          letter-spacing: 0.12em;
-          color: #D6BC96;
-        }
-        .expertise-stat-box {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 1.5rem;
-          margin-top: 2rem;
-        }
-        .stat-item {
-          display: flex;
-          flex-direction: column;
-        }
-        .stat-number {
-          font-size: 2.5rem;
-          font-weight: 800;
-          color: #FFFFFF;
-          line-height: 1;
-        }
-        .stat-label {
-          font-size: 0.775rem;
-          color: #8E9EA9;
-          margin-top: 0.35rem;
-        }
-        .quote-source {
-          display: block;
-          margin-top: 0.5rem;
-          color: #D6BC96;
-          font-size: 0.7rem;
-          letter-spacing: 0.08em;
-        }
-
-        /* Global Presence */
-        .global-presence-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1.5rem;
-          margin-bottom: 3rem;
-        }
-        .region-summary-card {
-          background-color: #FAF9F6;
-          border: 1px solid var(--border-hairline);
-          border-radius: var(--radius-sm);
-          padding: 1.75rem 1.5rem;
-          display: flex;
-          flex-direction: column;
-        }
-        .region-header {
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
-          margin-bottom: 1.25rem;
-          padding-bottom: 0.75rem;
-          border-bottom: 1px solid var(--border-hairline);
-        }
-        .region-title {
-          font-size: 1rem;
-          font-weight: 700;
-          color: var(--color-graphite);
-        }
-        .region-country-list {
-          list-style: none;
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-        }
-        .region-country-item {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 0.5rem;
-          font-size: 0.8125rem;
-        }
-        .country-info strong {
-          display: block;
-          color: var(--color-graphite);
-        }
-        .country-city {
-          display: block;
-          font-size: 0.725rem;
-          color: #647887;
-        }
-        .country-role-tag {
-          font-size: 0.6875rem;
-          font-weight: 600;
-          background-color: var(--color-warm-ivory-deep);
-          color: var(--color-graphite);
-          padding: 0.15rem 0.45rem;
-          border-radius: var(--radius-xs);
-          flex-shrink: 0;
-        }
-        .global-support-banner {
-          background-color: #FAF9F6;
-          border: 1px solid var(--border-subtle);
-          border-radius: var(--radius-sm);
-          padding: 2.25rem 2.5rem;
-        }
-        .support-banner-inner {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 2rem;
-          flex-wrap: wrap;
-        }
-        .support-banner-actions {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          flex-wrap: wrap;
-        }
-
-        /* News Cards */
-        .news-cards-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 2rem;
-        }
-        .news-card {
+        .flagship-image-col {
           background-color: #FFFFFF;
           border: 1px solid var(--border-hairline);
           border-radius: var(--radius-sm);
+          padding: 2.5rem;
+          box-shadow: var(--shadow-subtle);
+        }
+        .flagship-img {
+          width: 100%;
+          height: auto;
+          max-height: 460px;
+          object-fit: contain;
+          display: block;
+        }
+        .flagship-img-meta {
+          display: flex;
+          justify-content: space-between;
+          padding-top: 1.25rem;
+          margin-top: 1.25rem;
+          border-top: 1px solid var(--border-hairline);
+          font-size: 0.725rem;
+          color: var(--color-steel-blue);
+        }
+        .flagship-headline {
+          font-size: clamp(2.25rem, 3.8vw, 3.25rem);
+          font-weight: 700;
+          color: var(--color-graphite);
+          line-height: 1.1;
+          margin: 0.5rem 0 0.85rem;
+          letter-spacing: -0.025em;
+        }
+        .flagship-tagline {
+          font-size: 1.15rem;
+          line-height: 1.5;
+          color: #2D3A44;
+          font-weight: 550;
+          margin-bottom: 1.25rem;
+        }
+        .flagship-body {
+          font-size: 0.975rem;
+          line-height: 1.65;
+          color: #4D606E;
+          margin-bottom: 2rem;
+        }
+        .flagship-specs-matrix {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.5rem;
+          padding-top: 1.75rem;
+          margin-top: 1.75rem;
+          border-top: 1px solid var(--border-hairline);
+          margin-bottom: 2.25rem;
+        }
+        .spec-big {
+          display: block;
+          font-size: 1.5rem;
+          color: var(--color-graphite);
+          line-height: 1.1;
+        }
+        .spec-sub {
+          font-size: 0.8125rem;
+          color: var(--color-steel-blue);
+          line-height: 1.4;
+          margin-top: 0.25rem;
+          display: block;
+        }
+        .flagship-actions-row {
+          display: flex;
+          align-items: center;
+          gap: 1.25rem;
+          flex-wrap: wrap;
+        }
+
+        /* 5. DIVISIONS SECTION */
+        .divisions-editorial-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2.5rem;
+        }
+        .division-editorial-card {
+          background-color: var(--color-warm-ivory);
+          border: 1px solid var(--border-hairline);
+          border-radius: var(--radius-sm);
+          overflow: hidden;
           display: flex;
           flex-direction: column;
+          transition: border-color var(--transition-fast), transform var(--transition-fast);
+        }
+        .division-editorial-card:hover {
+          border-color: var(--color-accent);
+          transform: translateY(-2px);
+        }
+        .div-media {
+          height: 240px;
+          background-color: #FFFFFF;
+          border-bottom: 1px solid var(--border-hairline);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1.5rem;
+        }
+        .div-img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+        }
+        .div-body {
+          padding: 2rem 1.75rem;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+        }
+        .div-num {
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: var(--color-accent);
+          margin-bottom: 0.5rem;
+        }
+        .div-title {
+          font-size: 1.35rem;
+          font-weight: 700;
+          color: var(--color-graphite);
+          margin-bottom: 0.85rem;
+          line-height: 1.25;
+        }
+        .div-desc {
+          font-size: 0.9375rem;
+          line-height: 1.6;
+          color: #4D606E;
+          margin-bottom: 1.5rem;
+          flex-grow: 1;
+        }
+        .div-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-size: 0.875rem;
+          font-weight: 600;
+          color: var(--color-graphite);
+          transition: color var(--transition-fast);
+        }
+        .division-editorial-card:hover .div-link {
+          color: var(--color-accent);
+        }
+
+        /* 6. PHILOSOPHY SECTION */
+        .philosophy-layout {
+          max-width: 1080px;
+        }
+        .philosophy-headline {
+          font-size: clamp(2.25rem, 4vw, 3.5rem);
+          font-weight: 700;
+          line-height: 1.1;
+          letter-spacing: -0.025em;
+          margin: 0.75rem 0 1.5rem;
+          color: #FFFFFF;
+          text-wrap: balance;
+        }
+        .philosophy-lead {
+          font-size: 1.15rem;
+          line-height: 1.7;
+          color: #A4B2BC;
+          max-width: 72ch;
+          margin-bottom: 4rem;
+        }
+        .philosophy-pillars-row {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 3rem;
+          padding-top: 3rem;
+          border-top: 1px solid var(--border-dark-hairline);
+        }
+        .phil-num {
+          font-size: 0.8125rem;
+          font-weight: 700;
+          color: var(--color-accent);
+          display: block;
+          margin-bottom: 0.75rem;
+        }
+        .phil-title {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: #FFFFFF;
+          margin-bottom: 0.65rem;
+        }
+        .phil-desc {
+          font-size: 0.9375rem;
+          line-height: 1.6;
+          color: #8E9EA9;
+        }
+
+        /* 7. NEWS EDITORIAL */
+        .news-editorial-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2.5rem;
+        }
+        .news-editorial-card {
+          background-color: var(--color-warm-ivory);
+          border: 1px solid var(--border-hairline);
+          border-radius: var(--radius-sm);
           overflow: hidden;
-          transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+          display: flex;
+          flex-direction: column;
         }
-        .news-card:hover {
-          border-color: var(--color-muted-bronze);
-          box-shadow: var(--shadow-card);
-        }
-        .news-card-media {
+        .news-img-box {
           position: relative;
           height: 220px;
           background-color: #FFFFFF;
-          overflow: hidden;
+          border-bottom: 1px solid var(--border-hairline);
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 1.5rem;
-          border-bottom: 1px solid var(--border-hairline);
         }
         .news-card-img {
           max-width: 100%;
-          max-height: 175px;
-          width: auto;
-          height: auto;
+          max-height: 100%;
           object-fit: contain;
-          transition: transform var(--transition-smooth);
         }
-        .news-card:hover .news-card-img {
-          transform: scale(1.03);
-        }
-        .news-type-badge {
+        .news-type-tag {
           position: absolute;
           top: 0.75rem;
           right: 0.75rem;
-          background-color: rgba(20, 29, 36, 0.92);
+          background-color: var(--color-graphite);
           color: #FFFFFF;
-          font-size: 0.6875rem;
+          font-size: 0.65rem;
           font-weight: 700;
           letter-spacing: 0.08em;
-          padding: 0.25rem 0.6rem;
+          text-transform: uppercase;
+          padding: 0.25rem 0.55rem;
           border-radius: var(--radius-xs);
-          z-index: 2;
         }
-        .news-card-content {
+        .news-body-box {
           padding: 1.75rem 1.5rem;
           display: flex;
           flex-direction: column;
           flex-grow: 1;
         }
-        .news-date-location {
-          font-size: 0.725rem;
-          color: #647887;
-          margin-bottom: 0.5rem;
+        .news-meta-line {
+          font-size: 0.75rem;
+          color: var(--color-steel-blue);
           display: flex;
-          gap: 0.35rem;
+          gap: 0.5rem;
+          margin-bottom: 0.75rem;
         }
         .news-card-title {
-          font-size: 1.15rem;
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: var(--color-graphite);
           margin-bottom: 0.75rem;
-          line-height: 1.35;
+          line-height: 1.3;
+        }
+        .news-card-title a:hover {
+          color: var(--color-accent);
         }
         .news-card-excerpt {
-          font-size: 0.875rem;
-          line-height: 1.6;
+          font-size: 0.8875rem;
+          line-height: 1.58;
           color: #4D606E;
           margin-bottom: 1.25rem;
           flex-grow: 1;
         }
-        .news-card-footer {
-          margin-top: auto;
-          padding-top: 1rem;
-          border-top: 1px solid var(--border-hairline);
+        .news-card-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-size: 0.8125rem;
+          font-weight: 600;
+          color: var(--color-graphite);
+          transition: color var(--transition-fast);
+        }
+        .news-card-cta:hover {
+          color: var(--color-accent);
         }
 
-        /* Enquiry CTA */
-        .enquiry-cta-section {
-          text-align: center;
+        /* 8. ENQUIRY EDITORIAL BOX */
+        .enquiry-editorial-box {
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr;
+          gap: 4.5rem;
+          align-items: center;
+          background-color: #FFFFFF;
+          border: 1px solid var(--border-hairline);
+          border-radius: var(--radius-sm);
+          padding: 4rem;
+          box-shadow: var(--shadow-subtle);
         }
-        .enquiry-cta-box {
-          max-width: 840px;
-          margin: 0 auto;
-        }
-        .enquiry-cta-headline {
-          color: #FFFFFF;
-          font-size: clamp(2.2rem, 4vw, 3.25rem);
-          margin-bottom: 1.25rem;
+        .enquiry-headline {
+          font-size: clamp(2rem, 3.5vw, 2.75rem);
+          font-weight: 700;
           line-height: 1.15;
+          letter-spacing: -0.025em;
+          color: var(--color-graphite);
+          margin: 0.5rem 0 1rem;
         }
-        .enquiry-cta-lead {
-          color: #B2C0CB;
-          font-size: 1.2rem;
+        .enquiry-lead {
+          font-size: 1.05rem;
           line-height: 1.65;
-          margin-bottom: 2.5rem;
+          color: #4D606E;
+          margin-bottom: 2.25rem;
         }
-        .enquiry-cta-actions {
+        .enquiry-actions-group {
           display: flex;
           align-items: center;
-          justify-content: center;
           gap: 1.25rem;
           flex-wrap: wrap;
-          margin-bottom: 3rem;
         }
-        .enquiry-contact-chips {
+        .enquiry-contacts-col {
           display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 1rem;
-          flex-wrap: wrap;
-          font-size: 0.8125rem;
-          padding-top: 2rem;
-          border-top: 1px solid var(--border-dark-hairline);
+          flex-direction: column;
+          gap: 1.5rem;
+          padding-left: 3rem;
+          border-left: 1px solid var(--border-hairline);
         }
-        .chip-item {
+        .contact-item {
           display: flex;
-          align-items: center;
-          gap: 0.4rem;
+          flex-direction: column;
+          gap: 0.25rem;
         }
-        .chip-label {
-          color: #8E9EA9;
+        .contact-label {
+          font-size: 0.6875rem;
+          color: var(--color-steel-blue);
+          letter-spacing: 0.08em;
         }
-        .chip-val {
-          color: #FFFFFF;
+        .contact-link {
+          font-size: 0.9375rem;
+          color: var(--color-graphite);
           font-weight: 600;
+          transition: color var(--transition-fast);
         }
-        .chip-val:hover {
-          color: var(--color-muted-bronze);
+        .contact-link:hover {
+          color: var(--color-accent);
         }
-        .chip-sep {
-          color: #445766;
+        .contact-text {
+          font-size: 0.8125rem;
+          color: #4D606E;
+          line-height: 1.45;
         }
 
         /* Responsive Breakpoints */
         @media (max-width: 1024px) {
-          .hero-grid {
+          .statement-grid,
+          .stage-editorial-spread,
+          .flagship-feature-grid,
+          .enquiry-editorial-box {
             grid-template-columns: 1fr;
             gap: 2.5rem;
           }
-          .stage-selector-bar {
-            grid-template-columns: 1fr 1fr;
-          }
-          .stage-active-panel {
+          .statement-diptych {
             grid-template-columns: 1fr;
-            gap: 2.5rem;
           }
-          .flagship-grid {
+          .divisions-editorial-grid,
+          .news-editorial-grid,
+          .philosophy-pillars-row {
             grid-template-columns: 1fr;
-            gap: 2.5rem;
+            gap: 2rem;
           }
-          .heritage-editorial-grid {
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-          }
-          .products-grid {
-            grid-template-columns: 1fr 1fr;
-          }
-          .expertise-grid {
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-          }
-          .global-presence-grid {
-            grid-template-columns: 1fr 1fr;
-          }
-          .news-cards-grid {
-            grid-template-columns: 1fr;
+          .enquiry-contacts-col {
+            padding-left: 0;
+            border-left: none;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-hairline);
           }
         }
 
-        @media (max-width: 640px) {
-          .hero-section {
-            padding-top: 2.25rem;
-            padding-bottom: 3rem;
-          }
-          .hero-headline {
-            font-size: clamp(1.85rem, 6.2vw, 3rem);
-            line-height: 1.12;
-            margin-bottom: 1.15rem;
-          }
-          .hero-lead {
-            font-size: 1.05rem;
-            line-height: 1.55;
-            margin-bottom: 1.5rem;
-          }
-          .hero-cta-group {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-          }
-          .hero-cta-group .btn {
-            width: 100%;
-            justify-content: center;
-          }
-          .hero-metrics-grid {
+        @media (max-width: 768px) {
+          .process-pipeline-nav {
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            padding-top: 1.5rem;
           }
-          .metric-val {
-            font-size: 1.35rem;
-          }
-          .machinery-hero-frame {
-            padding: 1.25rem 1rem;
-          }
-          .machinery-img-wrap {
-            min-height: 220px;
-            padding: 1rem;
-          }
-          .hero-machine-img {
-            max-height: 190px;
-          }
-          .machinery-specs-overlay {
+          .stage-editorial-comparison {
             grid-template-columns: 1fr;
-            gap: 0.5rem;
-            padding: 0.75rem;
+            gap: 1.5rem;
           }
-          .stage-selector-bar {
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
+          .stage-editorial-spread {
+            padding: 1.75rem 1.5rem;
           }
-          .stage-nav-pill {
-            padding: 0.65rem 0.75rem;
+          .flagship-image-col {
+            padding: 1.5rem;
           }
-          .stage-nav-name {
-            font-size: 0.8125rem;
-          }
-          .stage-active-panel {
-            padding: 1.5rem 1.15rem;
-          }
-          .mini-card-tagline {
-            white-space: normal;
-          }
-          .product-filter-tabs {
-            overflow-x: auto;
-            flex-wrap: nowrap;
-            padding-bottom: 0.5rem;
-            width: 100%;
-            -webkit-overflow-scrolling: touch;
-          }
-          .filter-tab {
-            white-space: nowrap;
-            flex-shrink: 0;
-            min-height: 42px;
-          }
-          .products-grid {
-            grid-template-columns: 1fr;
-          }
-          .global-presence-grid {
-            grid-template-columns: 1fr;
-          }
-          .expertise-pillars-grid {
-            grid-template-columns: 1fr;
-          }
-          .flagship-spotlight-box {
-            padding: 1.5rem 1.15rem;
-          }
-          .flagship-features-grid {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-          }
-          .heritage-diptych-row {
-            grid-template-columns: 1fr;
-            gap: 0.85rem;
-          }
-          .heritage-facility-img {
-            height: 220px;
-            aspect-ratio: 16 / 10;
-            object-fit: cover;
-          }
-          .heritage-craft-thumb {
-            height: 140px;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-          }
-          .heritage-telemetry-block {
-            grid-template-columns: 1fr;
-            gap: 0.65rem;
-            padding: 0.9rem 1rem;
-          }
-          .telemetry-item {
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 0.5rem;
-            padding-bottom: 0.45rem;
-            border-bottom: 1px solid rgba(20, 29, 36, 0.08);
-          }
-          .telemetry-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-          }
-          .tel-label {
-            font-size: 0.6875rem;
-            flex-shrink: 0;
-          }
-          .tel-val {
-            font-size: 0.8125rem;
-            text-align: right;
-            white-space: nowrap;
-          }
-          .heritage-cta-strip {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 0.85rem;
-          }
-          .heritage-cta-strip .btn {
-            width: 100%;
-            justify-content: center;
-          }
-          .enquiry-cta-actions {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 0.85rem;
-            width: 100%;
-          }
-          .enquiry-cta-actions .btn {
-            width: 100%;
-            justify-content: center;
-          }
-          .enquiry-contact-chips {
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-          }
-          .chip-sep {
-            display: none;
+          .enquiry-editorial-box {
+            padding: 2rem 1.5rem;
           }
         }
 
-        @media (max-width: 380px) {
-          .hero-metrics-grid {
+        @media (max-width: 480px) {
+          .process-pipeline-nav {
             grid-template-columns: 1fr;
-            gap: 0.85rem;
           }
-          .stage-selector-bar {
-            grid-template-columns: 1fr;
+          .hero-cta-row,
+          .enquiry-actions-group,
+          .flagship-actions-row {
+            flex-direction: column;
+            align-items: stretch;
+            width: 100%;
+          }
+          .hero-cta-row .btn,
+          .enquiry-actions-group .btn,
+          .flagship-actions-row .btn {
+            width: 100%;
+            justify-content: center;
+          }
+          .hero-image-canvas {
+            padding: 1.5rem 1rem;
+          }
+          .hero-image-wrap {
+            min-height: 240px;
+          }
+          .statement-meta-row {
+            flex-direction: column;
+            gap: 1.25rem;
           }
         }
       `}</style>

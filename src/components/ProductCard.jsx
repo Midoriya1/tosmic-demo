@@ -8,11 +8,6 @@ export function ProductCard({ product, variant = 'default' }) {
   return (
     <article className={`editorial-product-card ${variant}`}>
       <Link to={`/products/${product.slug}`} className="product-card-media-wrap">
-        <span className="drafting-crosshair" style={{ top: '6px', left: '6px' }} />
-        <span className="drafting-crosshair" style={{ top: '6px', right: '6px' }} />
-        <span className="drafting-crosshair" style={{ bottom: '6px', left: '6px' }} />
-        <span className="drafting-crosshair" style={{ bottom: '6px', right: '6px' }} />
-
         <img
           src={product.primaryImage}
           alt={product.name}
@@ -60,7 +55,7 @@ export function ProductCard({ product, variant = 'default' }) {
           position: relative;
         }
         .editorial-product-card:hover {
-          border-color: var(--color-muted-bronze);
+          border-color: var(--color-accent);
           box-shadow: var(--shadow-card);
           transform: translateY(-2px);
         }
@@ -115,12 +110,12 @@ export function ProductCard({ product, variant = 'default' }) {
           font-weight: 700;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          color: var(--color-muted-bronze);
+          color: var(--color-steel-blue);
         }
         .product-card-code {
           font-size: 0.725rem;
           font-weight: 600;
-          color: var(--color-steel-blue);
+          color: var(--color-graphite);
           background-color: var(--color-warm-ivory);
           padding: 0.15rem 0.45rem;
           border-radius: var(--radius-xs);
@@ -136,7 +131,7 @@ export function ProductCard({ product, variant = 'default' }) {
           color: inherit;
         }
         .product-card-title a:hover {
-          color: var(--color-muted-bronze);
+          color: var(--color-accent);
         }
         .product-card-desc {
           font-size: 0.8875rem;
@@ -166,7 +161,7 @@ export function ProductCard({ product, variant = 'default' }) {
           transition: transform var(--transition-fast);
         }
         .product-card-cta:hover {
-          color: var(--color-muted-bronze);
+          color: var(--color-accent);
         }
         .product-card-cta:hover svg {
           transform: translate(2px, -2px);

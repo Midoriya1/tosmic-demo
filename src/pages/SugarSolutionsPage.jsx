@@ -122,10 +122,6 @@ export function SugarSolutionsPage({ onOpenEnquiry }) {
             </div>
 
             <div className="solution-header-media relative">
-              <div className="drafting-crosshair top-left"></div>
-              <div className="drafting-crosshair top-right"></div>
-              <div className="drafting-crosshair bottom-left"></div>
-              <div className="drafting-crosshair bottom-right"></div>
               <img
                 src="/assets/cotton-sugar-tms54.jpg"
                 alt="TMS54 Cotton Sugar Test Kit"
@@ -209,17 +205,14 @@ export function SugarSolutionsPage({ onOpenEnquiry }) {
 
           {/* Stickiness Scale Interactive Widget */}
           <div className="scale-widget-card bg-white border border-border-subtle p-6 md:p-8 rounded-sm shadow-card max-w-4xl mx-auto mb-16 relative">
-            <div className="drafting-crosshair top-left"></div>
-            <div className="drafting-crosshair top-right"></div>
-            <div className="drafting-crosshair bottom-left"></div>
-            <div className="drafting-crosshair bottom-right"></div>
-
             {/* Grade Selector Tabs */}
-            <div className="sugar-grade-tabs">
+            <div className="sugar-grade-tabs" role="tablist">
               {stickinessGrades.map((g, idx) => (
                 <button
                   key={g.code}
                   type="button"
+                  role="tab"
+                  aria-selected={selectedGrade === idx}
                   onClick={() => setSelectedGrade(idx)}
                   className={`sugar-grade-tab ${selectedGrade === idx ? 'active' : ''}`}
                 >
@@ -594,16 +587,6 @@ export function SugarSolutionsPage({ onOpenEnquiry }) {
           color: #141D24;
           font-weight: 600;
         }
-          font-weight: 700;
-          letter-spacing: 0.08em;
-          color: #647887;
-          display: block;
-        }
-        .reaction-val {
-          font-size: 0.8125rem;
-          color: var(--color-graphite);
-          display: block;
-        }
         .grade-assessment-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -619,7 +602,7 @@ export function SugarSolutionsPage({ onOpenEnquiry }) {
           margin-bottom: 0.35rem;
         }
         .assessment-text {
-          font-size: 0.9rem;
+          font-size: 0.9375rem;
           line-height: 1.6;
           color: var(--color-graphite);
           margin: 0;
@@ -647,8 +630,8 @@ export function SugarSolutionsPage({ onOpenEnquiry }) {
         .step-time {
           font-size: 0.75rem;
           font-weight: 700;
-          color: var(--color-muted-bronze);
-          background: rgba(170, 139, 98, 0.12);
+          color: var(--color-accent);
+          background: rgba(197, 55, 39, 0.08);
           padding: 0.2rem 0.5rem;
           border-radius: var(--radius-xs);
         }
@@ -682,7 +665,7 @@ export function SugarSolutionsPage({ onOpenEnquiry }) {
         @media (max-width: 768px) {
           .sugar-grade-tabs {
             grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
+            gap: 0.65rem;
           }
           .procedure-steps-grid {
             grid-template-columns: 1fr;
@@ -693,7 +676,7 @@ export function SugarSolutionsPage({ onOpenEnquiry }) {
             gap: 1.25rem;
           }
           .grade-display-box {
-            padding: 1.25rem 1rem;
+            padding: 1.5rem 1.25rem;
           }
         }
         @media (max-width: 640px) {
@@ -719,24 +702,35 @@ export function SugarSolutionsPage({ onOpenEnquiry }) {
           .scale-widget-card {
             padding: 1.25rem 1rem !important;
           }
-          .problem-context-card, .solution-approach-card {
+          .problem-card, .solution-approach-card {
             padding: 1.5rem 1.15rem;
           }
           .sugar-products-grid {
             grid-template-columns: 1fr;
           }
         }
-        @media (max-width: 480px) {
+        @media (max-width: 520px) {
+          .sugar-grade-tabs {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+          }
           .sugar-grade-tab {
-            padding: 0.65rem 0.75rem;
-            min-height: 64px;
+            padding: 0.85rem 1rem;
+            min-height: auto;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+          }
+          .tab-top-row {
+            margin-bottom: 0;
+            gap: 0.75rem;
           }
           .tab-code {
-            font-size: 0.7rem;
+            font-size: 0.8125rem;
           }
           .tab-label {
-            font-size: 0.75rem;
-            line-height: 1.25;
+            font-size: 0.8125rem;
+            text-align: right;
           }
         }
       `}</style>

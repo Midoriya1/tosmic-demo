@@ -17,7 +17,7 @@ export function Footer({ onOpenEnquiry }) {
           </div>
           <div className="footer-top-actions">
             <button 
-              className="btn btn-bronze"
+              className="btn btn-primary"
               onClick={() => onOpenEnquiry && onOpenEnquiry('', 'Sales')}
             >
               <span>Consult Factory Engineers</span>
@@ -140,7 +140,7 @@ export function Footer({ onOpenEnquiry }) {
             <h4 className="footer-col-title font-mono">Headquarters</h4>
             
             <div className="footer-contact-item">
-              <MapPin size={16} color="#A48256" className="contact-icon" />
+              <MapPin size={16} color="var(--color-accent)" className="contact-icon" />
               <div>
                 <strong>Tomsic S.r.l.</strong>
                 <span>via Malnisce, 3/B</span>
@@ -244,13 +244,19 @@ export function Footer({ onOpenEnquiry }) {
           font-size: 0.6875rem;
           font-weight: 700;
           letter-spacing: 0.08em;
-          color: #D6BC96;
+          color: var(--color-accent);
+          white-space: normal !important;
+          overflow-wrap: break-word !important;
+          word-break: break-word !important;
+          display: block;
+          line-height: 1.4;
         }
         .footer-brand-desc {
           font-size: 0.875rem;
           line-height: 1.6;
           color: #8E9EA9;
           margin-bottom: 1.5rem;
+          max-width: 100%;
         }
         .footer-acimit-badge {
           display: flex;
@@ -260,12 +266,15 @@ export function Footer({ onOpenEnquiry }) {
           border: 1px solid rgba(255, 255, 255, 0.09);
           padding: 0.75rem 1rem;
           border-radius: var(--radius-sm);
+          max-width: 100%;
+          box-sizing: border-box;
         }
         .acimit-img {
           height: auto;
           background: #FFFFFF;
           padding: 4px;
           border-radius: 2px;
+          flex-shrink: 0;
         }
         .acimit-text strong {
           display: block;
@@ -298,7 +307,7 @@ export function Footer({ onOpenEnquiry }) {
           transition: color var(--transition-fast);
         }
         .footer-links a:hover {
-          color: #D6BC96;
+          color: var(--color-accent);
         }
         .footer-contact-item {
           display: flex;
@@ -319,7 +328,7 @@ export function Footer({ onOpenEnquiry }) {
           color: #8E9EA9;
         }
         .footer-contact-item a:hover {
-          color: #D6BC96;
+          color: var(--color-accent);
         }
         .contact-icon {
           flex-shrink: 0;
@@ -345,7 +354,7 @@ export function Footer({ onOpenEnquiry }) {
           color: #8E9EA9;
         }
         .socket-links a:hover {
-          color: #D6BC96;
+          color: var(--color-accent);
         }
         .socket-sep {
           color: #445766;
@@ -357,13 +366,13 @@ export function Footer({ onOpenEnquiry }) {
           max-width: 100%;
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 1080px) {
           .footer-grid {
             grid-template-columns: 1fr 1fr;
             gap: 2.5rem;
           }
         }
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .footer-main {
             padding-top: 3.5rem;
             padding-bottom: 2.75rem;
@@ -371,13 +380,17 @@ export function Footer({ onOpenEnquiry }) {
             padding-right: 1.5rem !important;
           }
           .footer-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr !important;
             gap: 2.25rem;
             width: 100%;
           }
           .footer-col-brand, .footer-col {
-            width: 100%;
-            max-width: 100%;
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            overflow-wrap: break-word !important;
+            word-break: break-word !important;
+          }
           }
           .footer-top-inner {
             flex-direction: column;

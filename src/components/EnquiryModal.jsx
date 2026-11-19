@@ -68,9 +68,6 @@ export function EnquiryModal({ isOpen, onClose, initialProduct = '', initialDepa
   return (
     <div className="modal-backdrop" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="modal-title" data-lenis-prevent>
       <div className="modal-window" onClick={(e) => e.stopPropagation()} data-lenis-prevent>
-        <span className="drafting-crosshair" style={{ top: '8px', left: '8px' }} />
-        <span className="drafting-crosshair" style={{ top: '8px', right: '8px' }} />
-
         <button className="modal-close-btn" onClick={onClose} aria-label="Close dialog">
           <X size={18} />
         </button>
@@ -78,7 +75,7 @@ export function EnquiryModal({ isOpen, onClose, initialProduct = '', initialDepa
         <div className="modal-header">
           <div className="header-badge-row">
             <span className="badge-overline font-mono">DIRECT FACTORY DOSSIER</span>
-            <span className="badge-subtag">SAVOGNA D’ISONZO HQ</span>
+            <span className="badge-subtag font-mono">SAVOGNA D’ISONZO HQ</span>
           </div>
           <h3 id="modal-title" className="modal-title">
             Technical Enquiry & Quotation
@@ -252,14 +249,14 @@ export function EnquiryModal({ isOpen, onClose, initialProduct = '', initialDepa
           width: 100%;
           max-width: 100%;
           height: 100%;
-          background-color: rgba(13, 19, 24, 0.82);
-          backdrop-filter: blur(6px);
-          -webkit-backdrop-filter: blur(6px);
+          background-color: rgba(13, 19, 24, 0.85);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
           z-index: 9999;
           display: flex;
-          align-items: flex-start;
+          align-items: center;
           justify-content: center;
-          padding: 2rem 1rem;
+          padding: 2rem 1.25rem;
           overflow-y: auto;
           overscroll-behavior: contain;
           -webkit-overflow-scrolling: touch;
@@ -270,15 +267,16 @@ export function EnquiryModal({ isOpen, onClose, initialProduct = '', initialDepa
           max-width: 680px;
           width: 100%;
           position: relative;
-          padding: 2.25rem 2.25rem 1.75rem;
+          padding: 2.25rem 2.25rem 2rem;
           box-shadow: var(--shadow-modal);
           border: 1px solid var(--border-subtle);
           animation: modalAppear 0.25s var(--ease-editorial);
-          max-height: calc(100vh - 4rem);
+          max-height: min(92vh, 840px);
           display: flex;
           flex-direction: column;
-          margin: auto;
+          margin: 0;
           overflow: hidden;
+          box-sizing: border-box;
         }
         @keyframes modalAppear {
           from { opacity: 0; transform: scale(0.97) translateY(10px); }
@@ -286,8 +284,8 @@ export function EnquiryModal({ isOpen, onClose, initialProduct = '', initialDepa
         }
         .modal-close-btn {
           position: absolute;
-          top: 1.25rem;
-          right: 1.25rem;
+          top: 1.5rem;
+          right: 1.5rem;
           background: #FAF9F6;
           border: 1px solid var(--border-hairline);
           cursor: pointer;
@@ -308,29 +306,32 @@ export function EnquiryModal({ isOpen, onClose, initialProduct = '', initialDepa
         }
         .modal-header {
           margin-bottom: 1.25rem;
-          padding-bottom: 1rem;
+          padding-bottom: 1.15rem;
           border-bottom: 1px solid var(--border-hairline);
           flex-shrink: 0;
-          padding-right: 2.75rem;
+          padding-right: 3rem;
+          padding-top: 0.25rem;
         }
         .modal-title {
-          font-size: 1.5rem;
+          font-size: 1.65rem;
           font-family: var(--font-heading);
           font-weight: 700;
           color: var(--color-graphite);
-          margin: 0.35rem 0 0.25rem;
+          margin: 0.45rem 0 0.35rem;
           line-height: 1.2;
+          letter-spacing: -0.02em;
         }
         .modal-subtitle {
-          font-size: 0.875rem;
+          font-size: 0.9rem;
           color: #5C7080;
-          line-height: 1.45;
+          line-height: 1.5;
           margin: 0;
         }
         .modal-body-scrollable {
           overflow-y: auto;
           overflow-x: hidden;
           padding-right: 0.5rem;
+          padding-top: 0.25rem;
           flex-grow: 1;
           -webkit-overflow-scrolling: touch;
         }
@@ -351,7 +352,8 @@ export function EnquiryModal({ isOpen, onClose, initialProduct = '', initialDepa
         }
         .form-group input, .form-group select, .form-group textarea {
           width: 100%;
-          padding: 0.65rem 0.85rem;
+          box-sizing: border-box;
+          padding: 0.75rem 0.9rem;
           border: 1px solid #CFD8DE;
           border-radius: var(--radius-xs);
           font-family: var(--font-body);
@@ -361,7 +363,7 @@ export function EnquiryModal({ isOpen, onClose, initialProduct = '', initialDepa
           transition: border-color var(--transition-fast), background-color var(--transition-fast);
         }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-          border-color: var(--color-muted-bronze);
+          border-color: var(--color-accent);
           background-color: #FFFFFF;
           outline: none;
         }
@@ -384,7 +386,7 @@ export function EnquiryModal({ isOpen, onClose, initialProduct = '', initialDepa
         }
         .submission-success {
           text-align: center;
-          padding: 0.75rem 0;
+          padding: 1rem 0;
         }
         .success-icon-wrap {
           display: inline-flex;
@@ -415,13 +417,18 @@ export function EnquiryModal({ isOpen, onClose, initialProduct = '', initialDepa
         }
         @media (max-width: 640px) {
           .modal-backdrop {
-            padding: 1rem 0.5rem;
-            align-items: flex-start;
+            padding: 1rem 0.75rem;
+            align-items: center;
           }
           .modal-window {
-            padding: 1.5rem 1.15rem 1.15rem;
-            margin: 0.5rem auto;
+            padding: 1.5rem 1.25rem 1.25rem;
             max-height: calc(100vh - 2rem);
+          }
+          .modal-close-btn {
+            top: 1.15rem;
+            right: 1.15rem;
+            width: 34px;
+            height: 34px;
           }
           .modal-header {
             margin-bottom: 0.85rem;
@@ -430,8 +437,8 @@ export function EnquiryModal({ isOpen, onClose, initialProduct = '', initialDepa
             padding-top: 0.25rem;
           }
           .modal-title {
-            font-size: 1.25rem;
-            margin-top: 0.45rem;
+            font-size: 1.35rem;
+            margin-top: 0.35rem;
           }
           .modal-subtitle {
             font-size: 0.8125rem;

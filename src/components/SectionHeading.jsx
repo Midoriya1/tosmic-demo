@@ -82,7 +82,7 @@ export function SectionHeading({
           font-weight: 600;
           color: var(--color-graphite);
           padding-bottom: 0.25rem;
-          border-bottom: 2px solid var(--color-muted-bronze);
+          border-bottom: 2px solid var(--color-accent);
           background: none;
           border-top: none;
           border-left: none;
@@ -91,13 +91,13 @@ export function SectionHeading({
           transition: color var(--transition-fast), border-color var(--transition-fast);
         }
         .editorial-action-link:hover {
-          color: var(--color-muted-bronze);
+          color: var(--color-accent);
         }
         .editorial-action-link.dark {
           color: #FFFFFF;
         }
         .editorial-action-link.dark:hover {
-          color: #D6BC96;
+          color: var(--color-accent);
         }
         @media (max-width: 768px) {
           .editorial-section-heading {

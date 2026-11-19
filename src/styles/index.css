@@ -1,42 +1,44 @@
 /* ==========================================================================
    TOMSIC ADVANCED TECHNOLOGIES — DESIGN SYSTEM
-   Direction: Editorial Engineering (Swiss Metrology & Precision Industrial)
+   Direction: Italian Industrial Editorial
+   Authentic European Engineering | Minimalist Typography | Architectural Restraint
    ========================================================================== */
 
 :root {
-  /* Editorial Engineering Palette */
-  --color-warm-ivory: #F5F4F0;
-  --color-warm-ivory-light: #FAF9F6;
-  --color-warm-ivory-deep: #EDEAE2;
+  /* Italian Industrial Editorial Palette */
+  --color-warm-ivory: #F6F5F2;
+  --color-warm-ivory-light: #FBFBF9;
+  --color-warm-ivory-deep: #EDEAE4;
   --color-white: #FFFFFF;
-  --color-graphite: #141D24;
-  --color-graphite-dark: #0D1318;
-  --color-graphite-card: #1B2630;
-  --color-steel-blue: #5C7080;
-  --color-steel-blue-light: #8E9EA9;
-  --color-steel-blue-pale: #EDF2F5;
-  --color-muted-bronze: #A48256;
-  --color-muted-bronze-hover: #8E6E44;
-  --color-muted-bronze-light: #F5EFE6;
-  --color-precision-green: #297A58;
-
-  /* Architectural Hairline Borders */
-  --border-hairline: rgba(20, 29, 36, 0.09);
-  --border-subtle: rgba(20, 29, 36, 0.16);
-  --border-strong: rgba(20, 29, 36, 0.28);
-  --border-dark-hairline: rgba(255, 255, 255, 0.1);
-  --border-dark-subtle: rgba(255, 255, 255, 0.18);
+  --color-graphite: #12171B;
+  --color-graphite-dark: #0A0E11;
+  --color-graphite-card: #182026;
+  --color-steel-blue: #4E5D69;
+  --color-steel-blue-light: #82929F;
+  --color-steel-blue-pale: #EDF1F4;
+  
+  /* Decisive Italian Industrial Accent (Rosso Industriale / Vermilion) */
+  --color-accent: #C53727;
+  --color-accent-hover: #A82C1E;
+  --color-accent-subtle: rgba(197, 55, 39, 0.08);
+  
+  /* Editorial Hairline Dividers */
+  --border-hairline: rgba(18, 23, 27, 0.08);
+  --border-subtle: rgba(18, 23, 27, 0.14);
+  --border-strong: rgba(18, 23, 27, 0.28);
+  --border-dark-hairline: rgba(255, 255, 255, 0.08);
+  --border-dark-subtle: rgba(255, 255, 255, 0.16);
 
   /* Surfaces */
-  --surface-muted: #EFECE4;
+  --surface-muted: #ECE9E1;
   --surface-card: #FFFFFF;
-  --surface-dark: #141D24;
-  --surface-dark-card: #1C2731;
+  --surface-dark: #12171B;
+  --surface-dark-card: #1A2127;
 
-  /* Distinctive Editorial Typography System:
+  /* Typography System:
      - Headings & Display: Instrument Sans
      - Body & Navigation: DM Sans
-     - Technical Metrology & Tabular Data: IBM Plex Mono
+     - Technical Data & Specifications: IBM Plex Mono
   */
   --font-heading: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -47,9 +49,9 @@
   --max-width-canvas: 1440px;
   --max-width-content: 1240px;
   --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
 
   /* Header Height */
   --header-height: 80px;
@@ -59,14 +61,14 @@
   --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --transition-fast: 150ms var(--ease-editorial);
   --transition-normal: 250ms var(--ease-editorial);
-  --transition-smooth: 450ms var(--ease-editorial);
+  --transition-smooth: 400ms var(--ease-editorial);
   --transition-slow: 700ms var(--ease-editorial);
 
-  /* Shadows (Restrained Architectural Precision) */
-  --shadow-subtle: 0 1px 3px rgba(20, 29, 36, 0.04), 0 4px 12px rgba(20, 29, 36, 0.02);
-  --shadow-card: 0 2px 8px rgba(20, 29, 36, 0.04), 0 12px 28px rgba(20, 29, 36, 0.05);
-  --shadow-elevated: 0 8px 30px rgba(20, 29, 36, 0.08), 0 20px 48px rgba(20, 29, 36, 0.04);
-  --shadow-modal: 0 24px 64px rgba(10, 16, 22, 0.35);
+  /* Shadows (Subtle, Natural Contrast) */
+  --shadow-subtle: 0 1px 2px rgba(18, 23, 27, 0.03), 0 4px 12px rgba(18, 23, 27, 0.02);
+  --shadow-card: 0 2px 8px rgba(18, 23, 27, 0.03), 0 12px 28px rgba(18, 23, 27, 0.04);
+  --shadow-elevated: 0 12px 36px rgba(18, 23, 27, 0.08), 0 24px 60px rgba(18, 23, 27, 0.04);
+  --shadow-modal: 0 24px 64px rgba(8, 12, 16, 0.4);
 }
 
 /* Base Reset & Box Sizing */
@@ -140,59 +142,18 @@ body {
   position: relative;
 }
 
-/* Technical Architectural Grid Pattern Utility */
+/* Clean Editorial Surfaces (No blueprint grid overlays) */
 .bg-grid-blueprint {
-  background-image: 
-    linear-gradient(to right, rgba(92, 112, 128, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(92, 112, 128, 0.06) 1px, transparent 1px);
-  background-size: 48px 48px;
+  background-color: var(--color-warm-ivory);
 }
 
 .bg-grid-blueprint-dark {
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
+  background-color: var(--color-graphite);
 }
 
-/* Subtle Technical Drafting Crosshairs */
+/* Drafting crosshairs completely removed */
 .drafting-crosshair {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  pointer-events: none;
-  opacity: 0.45;
-  transition: opacity var(--transition-normal);
-}
-
-.drafting-crosshair.top-left { top: 8px; left: 8px; }
-.drafting-crosshair.top-right { top: 8px; right: 8px; }
-.drafting-crosshair.bottom-left { bottom: 8px; left: 8px; }
-.drafting-crosshair.bottom-right { bottom: 8px; right: 8px; }
-
-.drafting-crosshair::before, .drafting-crosshair::after {
-  content: "";
-  position: absolute;
-  background-color: var(--color-steel-blue);
-}
-
-.drafting-crosshair::before {
-  top: 6px;
-  left: 0;
-  width: 14px;
-  height: 1px;
-}
-
-.drafting-crosshair::after {
-  top: 0;
-  left: 6px;
-  width: 1px;
-  height: 14px;
-}
-
-/* Container & Component Hover Crosshair Accent */
-*:hover > .drafting-crosshair {
-  opacity: 0.85;
+  display: none !important;
 }
 
 /* ==========================================================================
@@ -381,34 +342,23 @@ img {
   width: 100%;
 }
 
-/* Editorial Overline Badge & Badge Row */
+/* Editorial Overline Label */
 .badge-overline {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-body);
-  font-size: 0.725rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-muted-bronze);
-  margin-bottom: 0.85rem;
-}
-
-.badge-overline::before {
-  content: "";
   display: inline-block;
-  width: 20px;
-  height: 1.5px;
-  background-color: var(--color-muted-bronze);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-steel-blue);
+  margin-bottom: 0.75rem;
 }
 
 .badge-overline.dark {
-  color: #D6BC96;
+  color: var(--color-steel-blue-light);
 }
 
-.badge-overline.dark::before {
-  background-color: #D6BC96;
+.badge-overline.accent {
+  color: var(--color-accent);
 }
 
 .header-badge-row {
@@ -428,11 +378,11 @@ img {
   font-size: 0.725rem;
   font-weight: 600;
   padding: 0.2rem 0.55rem;
-  background-color: rgba(20, 29, 36, 0.06);
-  border: 1px solid rgba(20, 29, 36, 0.14);
+  background-color: rgba(18, 23, 27, 0.05);
+  border: 1px solid rgba(18, 23, 27, 0.12);
   color: var(--color-graphite);
   border-radius: var(--radius-xs);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   white-space: nowrap;
 }
 
@@ -510,18 +460,18 @@ img {
   box-shadow: 0 0 0 2px rgba(41, 122, 88, 0.2);
 }
 
-/* Buttons — Restrained, Precision, Tactile */
+/* Buttons — Editorial, Architectural Precision */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
+  gap: 0.65rem;
   font-family: var(--font-body);
   font-size: 0.9375rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-weight: 550;
+  letter-spacing: -0.01em;
   padding: 0.85rem 1.65rem;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xs);
   cursor: pointer;
   border: 1px solid transparent;
   transition: all var(--transition-fast);
@@ -539,26 +489,24 @@ img {
   background-color: var(--color-graphite);
   color: #FFFFFF;
   border-color: var(--color-graphite);
-  box-shadow: 0 2px 6px rgba(20, 29, 36, 0.12);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-muted-bronze);
-  border-color: var(--color-muted-bronze);
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
   color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(164, 130, 86, 0.25);
   transform: translateY(-1px);
 }
 
-.btn-bronze {
-  background-color: var(--color-muted-bronze);
+.btn-accent, .btn-bronze {
+  background-color: var(--color-accent);
   color: #FFFFFF;
-  border-color: var(--color-muted-bronze);
+  border-color: var(--color-accent);
 }
 
-.btn-bronze:hover {
-  background-color: var(--color-muted-bronze-hover);
-  border-color: var(--color-muted-bronze-hover);
+.btn-accent:hover, .btn-bronze:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
   color: #FFFFFF;
   transform: translateY(-1px);
 }
@@ -566,14 +514,13 @@ img {
 .btn-secondary {
   background-color: transparent;
   color: var(--color-graphite);
-  border-color: var(--border-strong);
+  border-color: var(--border-subtle);
 }
 
 .btn-secondary:hover {
   background-color: var(--color-white);
   border-color: var(--color-graphite);
   color: var(--color-graphite);
-  box-shadow: var(--shadow-subtle);
   transform: translateY(-1px);
 }
 
@@ -584,7 +531,7 @@ img {
 }
 
 .btn-secondary-dark:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.08);
   border-color: #FFFFFF;
   color: #FFFFFF;
   transform: translateY(-1px);

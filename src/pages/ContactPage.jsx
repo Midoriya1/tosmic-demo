@@ -59,8 +59,7 @@ export function ContactPage() {
               <h2 style={{ fontSize: '2rem', marginBottom: '1.25rem' }}>TOMSIC S.r.l.</h2>
 
               <div className="hq-address-card">
-                <span className="drafting-crosshair" style={{ top: '6px', right: '6px' }} />
-                <MapPin size={22} color="#A48256" className="hq-icon" />
+                <MapPin size={22} color="var(--color-accent)" className="hq-icon" />
                 <div>
                   <strong>Factory & Administrative Offices</strong>
                   <span>via Malnisce, 3/B</span>
@@ -92,7 +91,7 @@ export function ContactPage() {
 
               {/* Working Hours */}
               <div className="working-hours-card">
-                <Clock size={17} color="#A48256" />
+                <Clock size={17} color="var(--color-accent)" />
                 <div>
                   <strong>Factory Operating Hours (CET):</strong>
                   <span className="font-mono">Monday – Friday: 08:00 – 12:30 / 13:30 – 17:00</span>
@@ -103,9 +102,6 @@ export function ContactPage() {
             {/* Right: Interactive Contact & RFQ Form */}
             <div className="contact-form-col">
               <div className="form-wrapper-card">
-                <span className="drafting-crosshair" style={{ top: '8px', left: '8px' }} />
-                <span className="drafting-crosshair" style={{ top: '8px', right: '8px' }} />
-
                 {!submitted ? (
                   <>
                     <span className="badge-overline font-mono">TRANSMIT DIRECT DOSSIER</span>
@@ -369,7 +365,7 @@ export function ContactPage() {
           word-break: break-word;
         }
         .dept-item-card:hover {
-          border-color: var(--color-muted-bronze);
+          border-color: var(--color-accent);
         }
         .dept-header {
           display: flex;
@@ -391,13 +387,13 @@ export function ContactPage() {
           align-items: center;
         }
         .dept-phone:hover {
-          color: var(--color-muted-bronze);
+          color: var(--color-accent);
         }
         .dept-email {
           display: inline-block;
           font-size: 0.8125rem;
           font-weight: 600;
-          color: var(--color-muted-bronze);
+          color: var(--color-accent);
           margin-bottom: 0.35rem;
         }
         .dept-desc {
@@ -468,7 +464,7 @@ export function ContactPage() {
           transition: border-color var(--transition-fast);
         }
         .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
-          border-color: var(--color-muted-bronze);
+          border-color: var(--color-accent);
           outline: none;
         }
         .form-submit-row {
@@ -598,6 +594,16 @@ export function ContactPage() {
             width: 100%;
             justify-content: center;
           }
+          .agent-country-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.25rem;
+          }
+          .agent-c-role {
+            text-align: left;
+            max-width: 100%;
+          }
+        }
           .hq-address-card {
             flex-direction: column;
             gap: 0.75rem;

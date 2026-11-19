@@ -57,11 +57,6 @@ export function NewsPage({ onOpenEnquiry }) {
           <div className="news-articles-stack">
             {filteredNews.map(item => (
               <article key={item.slug} className="news-article-card relative" id={item.slug}>
-                <div className="drafting-crosshair top-left"></div>
-                <div className="drafting-crosshair top-right"></div>
-                <div className="drafting-crosshair bottom-left"></div>
-                <div className="drafting-crosshair bottom-right"></div>
-
                 <div className="news-article-media">
                   <img src={item.image} alt={item.title} className="news-article-img" loading="lazy" />
                   <span className="news-badge-type">{item.type}</span>

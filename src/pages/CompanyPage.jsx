@@ -29,20 +29,15 @@ export function CompanyPage({ onOpenEnquiry }) {
       <section className="section bg-white" id="manufacturing">
         <div className="container">
           <div className="company-facility-grid">
-            <div className="facility-media-stack">
-              <span className="drafting-crosshair" style={{ top: '8px', left: '8px' }} />
-              <span className="drafting-crosshair" style={{ top: '8px', right: '8px' }} />
-
+            <div className="facility-media-card">
               <img
                 src="/assets/tomsic-facility.jpg"
                 alt="Tomsic S.r.l. Facility in Savogna d'Isonzo"
                 className="facility-main-img"
               />
-              <div className="facility-stat-badge">
-                <span className="badge-yr font-mono">1956</span>
-                <span className="badge-desc font-mono">
-                  CONTINUOUS OPERATION<br />SAVOGNA D’ISONZO (GO), ITALY
-                </span>
+              <div className="facility-caption-bar font-mono">
+                <span className="caption-tag">SAVOGNA D’ISONZO (GO), ITALY</span>
+                <span className="caption-year">EST. 1956 · CONTINUOUS OPERATION</span>
               </div>
             </div>
 
@@ -87,7 +82,6 @@ export function CompanyPage({ onOpenEnquiry }) {
 
           <div className="leadership-cards-grid">
             <div className="leadership-card">
-              <span className="drafting-crosshair" style={{ top: '8px', right: '8px' }} />
               <div className="leadership-role-tag font-mono">EXECUTIVE MANAGEMENT</div>
               <h3 className="leader-name">Mr. Silvan Tomsic</h3>
               <span className="leader-title font-mono">PRESIDENT & MANAGING DIRECTOR</span>
@@ -97,7 +91,6 @@ export function CompanyPage({ onOpenEnquiry }) {
             </div>
 
             <div className="leadership-card">
-              <span className="drafting-crosshair" style={{ top: '8px', right: '8px' }} />
               <div className="leadership-role-tag font-mono">TECHNICAL OPERATIONS</div>
               <h3 className="leader-name">Mr. Ladi Tomsic</h3>
               <span className="leader-title font-mono">VICE-PRESIDENT & ENGINEERING</span>
@@ -200,11 +193,11 @@ export function CompanyPage({ onOpenEnquiry }) {
           gap: 4.5rem;
           align-items: center;
         }
-        .facility-media-stack {
+        .facility-media-card {
           position: relative;
-          background: #FAF9F6;
+          background: #FFFFFF;
           border: 1px solid var(--border-subtle);
-          padding: 1rem;
+          padding: 0.85rem;
           border-radius: var(--radius-sm);
           box-shadow: var(--shadow-card);
         }
@@ -213,30 +206,25 @@ export function CompanyPage({ onOpenEnquiry }) {
           height: 380px;
           object-fit: cover;
           border-radius: var(--radius-xs);
+          display: block;
         }
-        .facility-stat-badge {
-          position: absolute;
-          bottom: -1.5rem;
-          left: 2rem;
-          background-color: var(--color-graphite);
-          color: #FFFFFF;
-          padding: 0.85rem 1.25rem;
-          border-radius: var(--radius-xs);
-          box-shadow: var(--shadow-elevated);
+        .facility-caption-bar {
           display: flex;
           align-items: center;
-          gap: 1rem;
-        }
-        .badge-yr {
-          font-size: 1.6rem;
-          font-weight: 800;
-          color: #D6BC96;
-        }
-        .badge-desc {
+          justify-content: space-between;
+          padding-top: 0.75rem;
+          margin-top: 0.75rem;
+          border-top: 1px solid var(--border-hairline);
           font-size: 0.6875rem;
-          color: #B2C0CB;
-          line-height: 1.35;
           letter-spacing: 0.05em;
+        }
+        .caption-tag {
+          font-weight: 700;
+          color: var(--color-graphite);
+        }
+        .caption-year {
+          color: var(--color-accent);
+          font-weight: 600;
         }
         .acimit-membership-box {
           background-color: #FAF9F6;
@@ -264,7 +252,7 @@ export function CompanyPage({ onOpenEnquiry }) {
           font-size: 0.6875rem;
           font-weight: 700;
           letter-spacing: 0.1em;
-          color: var(--color-muted-bronze);
+          color: var(--color-accent);
           margin-bottom: 0.6rem;
         }
         .leader-name {
@@ -401,11 +389,6 @@ export function CompanyPage({ onOpenEnquiry }) {
           }
         }
         @media (max-width: 768px) {
-          .facility-stat-badge {
-            position: static;
-            margin-top: 1rem;
-            box-shadow: none;
-          }
           .acimit-membership-box {
             flex-direction: column;
             align-items: flex-start;
@@ -426,7 +409,7 @@ export function CompanyPage({ onOpenEnquiry }) {
             height: 14px;
             padding: 0;
             border-radius: 50%;
-            background-color: var(--color-muted-bronze);
+            background-color: var(--color-accent);
             border: 2.5px solid #FFFFFF;
             box-shadow: 0 0 0 1px var(--color-graphite);
           }
@@ -438,8 +421,8 @@ export function CompanyPage({ onOpenEnquiry }) {
             display: inline-block;
             font-size: 0.75rem;
             font-weight: 700;
-            color: var(--color-muted-bronze);
-            background: rgba(170, 139, 98, 0.12);
+            color: var(--color-accent);
+            background: rgba(197, 55, 39, 0.08);
             padding: 0.2rem 0.55rem;
             border-radius: var(--radius-xs);
             margin-bottom: 0.45rem;
