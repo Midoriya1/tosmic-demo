@@ -32,8 +32,8 @@ export function SpinningSolutionsPage({ onOpenEnquiry }) {
           <div className="solution-header-grid">
             <div className="solution-header-copy">
               <div className="header-badge-row">
-                <span className="badge-overline">DIVISION 02 · ONLINE SPINNING AUTOMATION</span>
-                <span className="badge-subtag">PATENTED DSP CONTROL</span>
+                <span className="badge-overline">Division 02 · Spinning automation</span>
+                <span className="badge-subtag font-mono">DSP Control</span>
               </div>
               <h1 className="solution-header-title">Spinning Solutions</h1>
               <p className="solution-header-lead">
@@ -85,7 +85,7 @@ export function SpinningSolutionsPage({ onOpenEnquiry }) {
               <div className="drafting-crosshair top-right"></div>
               <div className="drafting-crosshair bottom-left"></div>
               <div className="drafting-crosshair bottom-right"></div>
-              <span className="badge-overline">PATENTED REGULATION</span>
+              <span className="badge-overline">Closed-loop autolevelling kinematics</span>
               <h3 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>
                 70% Reduction in 1-Meter Sliver Count Variation
               </h3>
@@ -110,7 +110,7 @@ export function SpinningSolutionsPage({ onOpenEnquiry }) {
               <div className="drafting-crosshair top-right"></div>
               <div className="drafting-crosshair bottom-left"></div>
               <div className="drafting-crosshair bottom-right"></div>
-              <span className="badge-overline">UNIVERSAL RETROFIT KITS</span>
+              <span className="badge-overline">Turnkey retrofit packages</span>
               <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>
                 Turnkey Mechanical & Electronic Kits for Industrial Cards
               </h3>
@@ -157,7 +157,7 @@ export function SpinningSolutionsPage({ onOpenEnquiry }) {
       <section className="section bg-warm-ivory border-top-hairline" id="cv-calculator">
         <div className="container">
           <div className="section-title-wrap text-center max-w-3xl mx-auto" style={{ marginBottom: '2.5rem' }}>
-            <span className="badge-overline">DIGITAL TWIN METROLOGY</span>
+            <span className="badge-overline">Sliver autolevelling simulation</span>
             <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)' }}>
               Interactive Sliver Autolevelling Simulator
             </h2>
@@ -286,7 +286,7 @@ export function SpinningSolutionsPage({ onOpenEnquiry }) {
       <section className="section bg-white border-top-hairline" id="spinning-products">
         <div className="container">
           <div className="section-title-wrap" style={{ marginBottom: '3rem' }}>
-            <span className="badge-overline">REGULATION & MONITORING LINEUP</span>
+            <span className="badge-overline">Spinning automation portfolio</span>
             <h2>Spinning Autolevelling & Monitoring Systems</h2>
             <p style={{ color: '#647887', fontSize: '1.1rem', marginTop: '0.4rem' }}>
               Engineered for short staple cotton and long staple wool, acrylic, and blended top processing.
@@ -306,7 +306,7 @@ export function SpinningSolutionsPage({ onOpenEnquiry }) {
         <div className="container">
           <div className="bg-warm-ivory border border-border-subtle p-8 md:p-12 rounded-sm relative flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="max-w-xl">
-              <span className="badge-overline">CARD ROOM AUDIT</span>
+              <span className="badge-overline">Plant modernization consultation</span>
               <h3 className="text-2xl md:text-3xl font-bold font-heading mb-3 text-graphite">
                 Have older Rieter, Trützschler, or Marzoli cards producing high CV%?
               </h3>

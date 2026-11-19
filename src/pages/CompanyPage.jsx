@@ -14,7 +14,7 @@ export function CompanyPage({ onOpenEnquiry }) {
           <Breadcrumbs items={[{ label: 'Company & Heritage' }]} />
 
           <div className="company-header-inner">
-            <span className="badge-overline font-mono">ESTABLISHED 1956 · GORIZIA, ITALY</span>
+            <span className="badge-overline font-mono">Established 1956 · Gorizia, Italy</span>
             <h1 className="company-header-title">
               Precision engineering rooted in Italian textile heritage.
             </h1>
@@ -42,7 +42,7 @@ export function CompanyPage({ onOpenEnquiry }) {
             </div>
 
             <div className="facility-text-stack">
-              <span className="badge-overline font-mono">SAVOGNA D’ISONZO COMPLEX</span>
+              <span className="badge-overline font-mono">Savogna d’Isonzo manufacturing facility</span>
               <h2 style={{ fontSize: '2.15rem', marginBottom: '1.25rem' }}>
                 100% In-house design, machining, and software synthesis.
               </h2>
@@ -75,7 +75,7 @@ export function CompanyPage({ onOpenEnquiry }) {
       <section className="section bg-warm-ivory border-top-hairline" id="leadership">
         <div className="container">
           <SectionHeading
-            overline="EXECUTIVE GOVERNANCE"
+            overline="Executive governance"
             title="Second-Generation Family Leadership"
             subtitle="Direct personal accountability from our directors to your mill operations."
           />
@@ -106,7 +106,7 @@ export function CompanyPage({ onOpenEnquiry }) {
       <section className="section bg-white border-top-hairline">
         <div className="container">
           <SectionHeading
-            overline="CHRONOLOGY OF INNOVATION"
+            overline="Chronology of innovation"
             title="Seven Decades of Milestones"
             subtitle="The evolution of an Italian engineering factory into a global textile metrology specialist."
           />
@@ -137,7 +137,7 @@ export function CompanyPage({ onOpenEnquiry }) {
       <section className="section-sm bg-warm-ivory border-top-hairline">
         <div className="container">
           <div className="corporate-details-box">
-            <span className="badge-overline font-mono">OFFICIAL CORPORATE DATA</span>
+            <span className="badge-overline font-mono">Corporate registry and compliance</span>
             <div className="corp-details-grid font-mono">
               <div>
                 <span className="corp-label">Legal Name:</span>

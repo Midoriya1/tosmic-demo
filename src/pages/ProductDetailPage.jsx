@@ -355,7 +355,7 @@ export function ProductDetailPage({ onOpenEnquiry }) {
             <div className="catalogue-info">
               <FileText size={30} color="#A48256" className="cat-icon" />
               <div>
-                <span className="badge-overline">TECHNICAL ARCHIVE</span>
+                <span className="badge-overline">Technical documentation</span>
                 <h3 style={{ fontSize: '1.35rem', marginTop: '0.2rem' }}>
                   {product.officialCatalogName || 'TOMSIC Technical Specification Leaflet'}
                 </h3>
@@ -383,7 +383,7 @@ export function ProductDetailPage({ onOpenEnquiry }) {
         <section className="section bg-warm-ivory border-top-hairline">
           <div className="container">
             <div className="section-title-wrap" style={{ marginBottom: '2.5rem' }}>
-              <span className="badge-overline">INTER-MACHINE INTEGRATION</span>
+              <span className="badge-overline">Inter-machine integration</span>
               <h2>Related Systems & Instruments</h2>
               <p style={{ color: '#5C7080', fontSize: '1.05rem', marginTop: '0.35rem' }}>
                 Compatible testing units communicating via unified Link Job database records.

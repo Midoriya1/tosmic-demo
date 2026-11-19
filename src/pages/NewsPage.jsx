@@ -19,8 +19,8 @@ export function NewsPage({ onOpenEnquiry }) {
 
           <div className="news-header-inner">
             <div className="header-badge-row">
-              <span className="badge-overline">DISPATCHES & GLOBAL EXHIBITIONS</span>
-              <span className="badge-subtag">VERIFIED ARCHIVE</span>
+              <span className="badge-overline">Dispatches and exhibitions</span>
+              <span className="badge-subtag font-mono">Archive</span>
             </div>
             <h1 className="news-header-title">News, Exhibitions & Technological Milestones</h1>
             <p className="news-header-lead">

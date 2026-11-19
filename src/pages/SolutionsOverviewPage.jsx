@@ -54,8 +54,8 @@ export function SolutionsOverviewPage({ onOpenEnquiry }) {
           
           <div className="page-header-content">
             <div className="header-badge-row">
-              <span className="badge-overline">ENGINEERED CAPABILITIES</span>
-              <span className="badge-subtag">3 DIVISIONS · 100% ITALIAN</span>
+              <span className="badge-overline">Engineering capabilities</span>
+              <span className="badge-subtag font-mono">3 Specialized Divisions</span>
             </div>
             <h1 className="page-header-title">
               Three specialized divisions for the modern textile mill.
@@ -221,7 +221,7 @@ export function SolutionsOverviewPage({ onOpenEnquiry }) {
             <span className="drafting-crosshair bottom-right" />
 
             <div className="callout-text">
-              <span className="badge-overline">INTEGRATED MILL METROLOGY</span>
+              <span className="badge-overline">Mill consultation</span>
               <h3 className="callout-title">
                 Need a complete laboratory & card room consultation?
               </h3>

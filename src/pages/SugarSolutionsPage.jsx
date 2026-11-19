@@ -96,8 +96,8 @@ export function SugarSolutionsPage({ onOpenEnquiry }) {
           <div className="solution-header-grid">
             <div className="solution-header-copy">
               <div className="header-badge-row">
-                <span className="badge-overline">DIVISION 03 · RAW FIBRE CONTAMINATION METROLOGY</span>
-                <span className="badge-subtag">15-MIN PROTOCOL</span>
+                <span className="badge-overline">Division 03 · Fibre contamination metrology</span>
+                <span className="badge-subtag font-mono">15-min protocol</span>
               </div>
               <h1 className="solution-header-title">Sugar Solutions</h1>
               <p className="solution-header-lead">
@@ -194,7 +194,7 @@ export function SugarSolutionsPage({ onOpenEnquiry }) {
       <section className="section bg-warm-ivory border-top-hairline" id="stickiness-scale">
         <div className="container">
           <div className="section-title-wrap text-center max-w-3xl mx-auto" style={{ marginBottom: '2.5rem' }}>
-            <span className="badge-overline">LABORATORY CALIBRATION STANDARD</span>
+            <span className="badge-overline">Stickiness calibration scale</span>
             <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)' }}>
               Interactive Colorimetric Stickiness Scale
             </h2>
@@ -279,7 +279,7 @@ export function SugarSolutionsPage({ onOpenEnquiry }) {
           {/* 15-Minute Protocol Step-by-Step Timeline */}
           <div className="protocol-timeline-box max-w-4xl mx-auto">
             <div className="text-center" style={{ marginBottom: '2rem' }}>
-              <span className="badge-overline">EXACT CHEMICAL METHOD</span>
+              <span className="badge-overline">15-minute chemical method</span>
               <h3 style={{ fontSize: '1.75rem', fontWeight: 700, color: '#17232D', margin: '0.4rem 0' }}>
                 The 15-Minute Testing Procedure
               </h3>
@@ -308,7 +308,7 @@ export function SugarSolutionsPage({ onOpenEnquiry }) {
       <section className="section bg-white border-top-hairline" id="sugar-products">
         <div className="container">
           <div className="section-title-wrap" style={{ marginBottom: '3rem' }}>
-            <span className="badge-overline">CALIBRATED TESTING SYSTEMS</span>
+            <span className="badge-overline">Sugar solutions portfolio</span>
             <h2>Sugar Solutions Lineup</h2>
             <p style={{ color: '#647887', fontSize: '1.1rem', marginTop: '0.4rem' }}>
               Standardized reagents and testing kits formulated and packaged in Savogna d'Isonzo, Italy.

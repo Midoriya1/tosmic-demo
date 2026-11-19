@@ -18,15 +18,12 @@ export function ContactPage() {
   });
 
   const [submitted, setSubmitted] = useState(false);
-  const [refCode, setRefCode] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setTimeout(() => {
-      const code = `TMS-${Math.floor(100000 + Math.random() * 900000)}`;
-      setRefCode(code);
       setIsSubmitting(false);
       setSubmitted(true);
     }, 400);
@@ -104,10 +101,10 @@ export function ContactPage() {
               <div className="form-wrapper-card">
                 {!submitted ? (
                   <>
-                    <span className="badge-overline font-mono">TRANSMIT DIRECT DOSSIER</span>
+                    <span className="badge-overline font-mono">DEMO INTERACTION</span>
                     <h3 style={{ fontSize: '1.65rem', marginBottom: '0.4rem' }}>Technical Request & Quotation</h3>
                     <p style={{ color: '#5C7080', fontSize: '0.9rem', marginBottom: '1.75rem' }}>
-                      All submissions are reviewed by qualified application engineers in Savogna d'Isonzo.
+                      Simulate an equipment inquiry to test the user flow. (Interactive demonstration)
                     </p>
 
                     <form onSubmit={handleSubmit} className="page-contact-form">
@@ -216,12 +213,12 @@ export function ContactPage() {
 
                       <div className="form-submit-row">
                         <div className="privacy-badge">
-                          <ShieldCheck size={16} color="#A48256" style={{ flexShrink: 0 }} />
-                          <span>Confidential B2B communication. Direct factory handling.</span>
+                          <ShieldCheck size={16} color="var(--color-accent)" style={{ flexShrink: 0 }} />
+                          <span>Interactive demonstration prototype. Submissions are processed locally.</span>
                         </div>
                         <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
                           <Send size={15} />
-                          <span>{isSubmitting ? 'Transmitting...' : 'Submit Technical Enquiry'}</span>
+                          <span>{isSubmitting ? 'Validating...' : 'Simulate Inquiry Submission'}</span>
                         </button>
                       </div>
                     </form>
@@ -229,20 +226,31 @@ export function ContactPage() {
                 ) : (
                   <div className="contact-success-state">
                     <div className="success-icon-ring">
-                      <CheckCircle2 size={44} color="#A48256" />
+                      <CheckCircle2 size={40} color="var(--color-accent)" />
                     </div>
-                    <h3 style={{ fontSize: '1.6rem', marginTop: '0.75rem' }}>Enquiry Successfully Transmitted</h3>
-                    <p style={{ fontSize: '0.85rem', color: '#647887', marginTop: '0.35rem' }} className="font-mono">
-                      Reference Dossier: <strong className="tabular-nums">{refCode}</strong>
+                    <h3 style={{ fontSize: '1.45rem', marginTop: '0.75rem' }}>Demo submission complete — no enquiry was sent.</h3>
+                    <p style={{ color: '#384A59', fontSize: '0.9375rem', lineHeight: '1.6', margin: '1rem 0 1.25rem' }}>
+                      This website is an independent digital concept and demonstration prototype for Tomsic Advanced Technologies. Your form input was validated locally in your browser for demonstration purposes and has not been transmitted to Tomsic S.r.l.
                     </p>
-                    <p style={{ color: '#384A59', fontSize: '0.975rem', lineHeight: '1.6', margin: '1.5rem 0' }}>
-                      Thank you, <strong>{formData.name}</strong>. Your inquiry has been routed to <strong>Tomsic {formData.department} Department</strong> in Savogna d'Isonzo. An application engineer will respond within 24 business hours.
-                    </p>
+                    <div className="direct-contact-box" style={{ background: '#FFFFFF', border: '1px solid var(--border-subtle)', padding: '1rem 1.25rem', borderRadius: 'var(--radius-xs)', textAlign: 'left', marginBottom: '1.5rem' }}>
+                      <strong style={{ fontSize: '0.85rem', display: 'block', marginBottom: '0.35rem' }}>Official Factory Inquiries:</strong>
+                      <p style={{ fontSize: '0.8125rem', color: '#5C7080', lineHeight: '1.45', margin: '0 0 0.5rem' }}>
+                        For genuine commercial or technical inquiries, contact Tomsic S.r.l. directly via their official headquarters:
+                      </p>
+                      <div style={{ display: 'flex', gap: '1.25rem', fontSize: '0.8125rem', color: '#141D24', flexWrap: 'wrap' }}>
+                        <a href="tel:+390481882320" style={{ color: '#141D24', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+                          <Phone size={13} style={{ display: 'inline', marginRight: '4px' }} /> +39 (0481) 882320
+                        </a>
+                        <a href="mailto:sales@tomsic.it" style={{ color: '#141D24', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+                          <Mail size={13} style={{ display: 'inline', marginRight: '4px' }} /> sales@tomsic.it
+                        </a>
+                      </div>
+                    </div>
                     <button
                       className="btn btn-secondary"
                       onClick={() => setSubmitted(false)}
                     >
-                      <span>Submit Another Inquiry</span>
+                      <span>Reset Demo Form</span>
                     </button>
                   </div>
                 )}
@@ -594,16 +602,6 @@ export function ContactPage() {
             width: 100%;
             justify-content: center;
           }
-          .agent-country-row {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.25rem;
-          }
-          .agent-c-role {
-            text-align: left;
-            max-width: 100%;
-          }
-        }
           .hq-address-card {
             flex-direction: column;
             gap: 0.75rem;
@@ -611,8 +609,8 @@ export function ContactPage() {
           }
           .agent-country-row {
             flex-direction: column;
-            gap: 0.25rem;
             align-items: flex-start;
+            gap: 0.25rem;
           }
           .agent-c-role {
             text-align: left;

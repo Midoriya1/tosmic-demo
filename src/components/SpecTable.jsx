@@ -8,7 +8,7 @@ export function SpecTable({ specifications = [], title = 'Technical Specificatio
       {title && (
         <div className="spec-table-header">
           <h4 className="spec-table-title">{title}</h4>
-          <span className="spec-meta-tag font-mono">CERTIFIED TOLERANCE: CLASS 0.5</span>
+          <span className="spec-meta-tag font-mono">Class 0.5 metrology standard</span>
         </div>
       )}
       <div className="spec-table-responsive">
@@ -56,10 +56,10 @@ export function SpecTable({ specifications = [], title = 'Technical Specificatio
           margin: 0;
         }
         .spec-meta-tag {
-          font-size: 0.6875rem;
-          color: var(--color-muted-bronze);
-          font-weight: 600;
-          letter-spacing: 0.08em;
+          font-size: 0.7rem;
+          color: var(--color-steel-blue);
+          font-weight: 500;
+          letter-spacing: 0.04em;
         }
         .spec-table-responsive {
           width: 100%;

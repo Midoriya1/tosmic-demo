@@ -94,8 +94,8 @@ export function LaboratorySolutionsPage({ onOpenEnquiry }) {
           <div className="solution-header-grid">
             <div className="solution-header-copy">
               <div className="header-badge-row">
-                <span className="badge-overline">DIVISION 01 · TEXTILE METROLOGY</span>
-                <span className="badge-subtag">CLASS 0.5 CALIBRATED</span>
+                <span className="badge-overline">Division 01 · Textile metrology</span>
+                <span className="badge-subtag font-mono">Class 0.5 calibrated</span>
               </div>
               <h1 className="solution-header-title">Laboratory Solutions</h1>
               <p className="solution-header-lead">
@@ -143,7 +143,7 @@ export function LaboratorySolutionsPage({ onOpenEnquiry }) {
         <div className="container">
           <div className="architecture-grid">
             <div>
-              <span className="badge-overline">ENGINEERING PHILOSOPHY</span>
+              <span className="badge-overline">Engineering philosophy</span>
               <h2 style={{ fontSize: '2.15rem', marginBottom: '1.25rem' }}>
                 Why global spinning mills choose Tomsic testing benches.
               </h2>
@@ -192,7 +192,7 @@ export function LaboratorySolutionsPage({ onOpenEnquiry }) {
       <section className="section bg-warm-ivory border-top-hairline" id="lab-calculator">
         <div className="container">
           <div className="section-title-wrap text-center max-w-3xl mx-auto" style={{ marginBottom: '2.5rem' }}>
-            <span className="badge-overline">LABORATORY CONVERSION METROLOGY</span>
+            <span className="badge-overline">Textile count conversion tool</span>
             <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)' }}>
               Textile Count & Linear Density Converter
             </h2>
@@ -288,7 +288,7 @@ export function LaboratorySolutionsPage({ onOpenEnquiry }) {
       <section className="section bg-white border-top-hairline">
         <div className="container">
           <div className="section-title-wrap max-w-2xl mb-8">
-            <span className="badge-overline">REGULATORY HARMONIZATION</span>
+            <span className="badge-overline">International standard harmonization</span>
             <h3 className="text-2xl font-bold text-graphite">
               Certified Metrological Testing Standards
             </h3>
@@ -320,7 +320,7 @@ export function LaboratorySolutionsPage({ onOpenEnquiry }) {
       <section className="section bg-warm-ivory border-top-hairline" id="lab-products">
         <div className="container">
           <div className="section-title-wrap" style={{ marginBottom: '3rem' }}>
-            <span className="badge-overline">COMPLETE METROLOGY PORTFOLIO</span>
+            <span className="badge-overline">Testing instruments portfolio</span>
             <h2>Laboratory Testing Instruments</h2>
             <p style={{ color: '#647887', fontSize: '1.1rem', marginTop: '0.4rem' }}>
               Engineered, machined, and calibrated 100% in Savogna d'Isonzo, Italy.
@@ -340,7 +340,7 @@ export function LaboratorySolutionsPage({ onOpenEnquiry }) {
         <div className="container">
           <div className="ancillary-section-box">
             <div>
-              <span className="badge-overline">ADDITIONAL INSTRUMENTS</span>
+              <span className="badge-overline">Ancillary laboratory equipment</span>
               <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>
                 Complete Spinning Laboratory Ancillary Equipment
               </h3>

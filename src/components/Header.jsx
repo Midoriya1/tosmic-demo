@@ -48,6 +48,8 @@ export function Header({ onOpenEnquiry }) {
       <div className="top-technical-bar">
         <div className="container-wide top-tech-inner">
           <div className="tech-meta-left">
+            <span className="concept-demo-badge font-mono">CONCEPT DEMO</span>
+            <span className="tech-sep">/</span>
             <span className="tech-coord font-mono">SAVOGNA D’ISONZO (GO) · 45°52′N 13°34′E</span>
             <span className="tech-sep">/</span>
             <span className="tech-heritage">ITALIAN TEXTILE MACHINERY · SINCE 1956</span>
@@ -337,6 +339,18 @@ export function Header({ onOpenEnquiry }) {
         .tech-heritage, .tech-acimit {
           font-size: 0.6875rem;
           color: #B2C0CB;
+        }
+        .concept-demo-badge {
+          display: inline-block;
+          font-size: 0.5875rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          padding: 0.12rem 0.45rem;
+          background: rgba(197, 55, 39, 0.28);
+          border: 1px solid rgba(197, 55, 39, 0.55);
+          border-radius: var(--radius-xs);
+          color: #FFFFFF;
+          line-height: 1.3;
         }
         .tech-contact-link {
           display: inline-flex;

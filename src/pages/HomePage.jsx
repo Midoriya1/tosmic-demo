@@ -139,7 +139,7 @@ export function HomePage({ onOpenEnquiry }) {
     <div className="homepage-editorial" ref={homeRef}>
       
       {/* 1. HERO — ITALIAN INDUSTRIAL EDITORIAL */}
-      <section className="hero-editorial">
+      <section className="hero-editorial bg-grid-blueprint">
         <div className="container">
           <div className="hero-header-block">
             <span className="hero-dateline font-mono">
@@ -199,7 +199,7 @@ export function HomePage({ onOpenEnquiry }) {
         <div className="container">
           <div className="statement-grid">
             <div className="statement-left">
-              <span className="badge-overline accent">OUR CORE CONVICTION</span>
+              <span className="badge-overline accent">Core engineering principles</span>
               <blockquote className="statement-quote">
                 "We reject proprietary obsolescence. Every electronic board, mechanical assembly, and measurement software algorithm is engineered and synthesized under one Italian roof."
               </blockquote>
@@ -263,7 +263,7 @@ export function HomePage({ onOpenEnquiry }) {
       <section className="section bg-white border-top-hairline">
         <div className="container">
           <div className="section-header-editorial">
-            <span className="badge-overline">PROCESS-ORIENTED METROLOGY</span>
+            <span className="badge-overline">Process-oriented metrology</span>
             <h2 className="section-title-editorial">Quality Control from Raw Fibre to Spun Yarn.</h2>
             <p className="section-lead-editorial">
               Each production stage requires dedicated physics, sensors, and regulation. Select a phase below to inspect the metrological challenge and Tomsic's engineering solution.
@@ -352,7 +352,7 @@ export function HomePage({ onOpenEnquiry }) {
             </div>
 
             <div className="flagship-content-col">
-              <span className="badge-overline accent">FLAGSHIP LABORATORY BENCH</span>
+              <span className="badge-overline accent">Flagship testing system</span>
               <h2 className="flagship-headline">“easy” Evenness Tester</h2>
               <p className="flagship-tagline">
                 World-standard mass variation and spectrogram testing for yarn, roving, and sliver.
@@ -406,7 +406,7 @@ export function HomePage({ onOpenEnquiry }) {
       <section className="section bg-white border-top-hairline">
         <div className="container">
           <div className="section-header-editorial">
-            <span className="badge-overline">SPECIALIZED DIVISIONS</span>
+            <span className="badge-overline">Manufacturing divisions</span>
             <h2 className="section-title-editorial">Three Pillars of Industrial Competence.</h2>
             <p className="section-lead-editorial">
               Each division provides dedicated instrumentation engineered for specific mill operations.
@@ -487,11 +487,11 @@ export function HomePage({ onOpenEnquiry }) {
       </section>
 
       {/* 6. ENGINEERING PHILOSOPHY & LONGEVITY (Graphite Depth) */}
-      <section className="section bg-graphite text-white border-top-hairline">
+      <section className="section bg-graphite text-white border-top-hairline bg-grid-blueprint-dark">
         <div className="container">
           <div className="philosophy-layout">
             <div className="philosophy-header">
-              <span className="badge-overline dark">THE TOMSIC PHILOSOPHY</span>
+              <span className="badge-overline dark">Open engineering standard</span>
               <h2 className="philosophy-headline">
                 Rejecting Planned Obsolescence in Industrial Metrology.
               </h2>
@@ -527,7 +527,7 @@ export function HomePage({ onOpenEnquiry }) {
           <div className="section-header-editorial">
             <div className="flex justify-between items-end flex-wrap gap-4">
               <div>
-                <span className="badge-overline">DISPATCHES & TRADE FAIRS</span>
+                <span className="badge-overline">Dispatches and exhibitions</span>
                 <h2 className="section-title-editorial">News & International Exhibitions</h2>
                 <p className="section-lead-editorial">
                   Meet Tomsic engineers at premier international textile technology events.
@@ -582,7 +582,7 @@ export function HomePage({ onOpenEnquiry }) {
         <div className="container">
           <div className="enquiry-editorial-box">
             <div className="enquiry-text-col">
-              <span className="badge-overline accent">START A TECHNICAL DIALOGUE</span>
+              <span className="badge-overline accent">Factory consultation</span>
               <h2 className="enquiry-headline">
                 Connect Directly with Factory Engineers in Savogna d'Isonzo.
               </h2>

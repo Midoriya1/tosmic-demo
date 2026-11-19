@@ -391,7 +391,6 @@ export function Footer({ onOpenEnquiry }) {
             overflow-wrap: break-word !important;
             word-break: break-word !important;
           }
-          }
           .footer-top-inner {
             flex-direction: column;
             align-items: stretch;

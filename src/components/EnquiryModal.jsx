@@ -53,8 +53,6 @@ export function EnquiryModal({ isOpen, onClose, initialProduct = '', initialDepa
     e.preventDefault();
     setIsSubmitting(true);
     setTimeout(() => {
-      const ref = `TMS-${Math.floor(100000 + Math.random() * 900000)}`;
-      setReferenceId(ref);
       setIsSubmitting(false);
       setSubmitted(true);
     }, 400);
@@ -74,14 +72,14 @@ export function EnquiryModal({ isOpen, onClose, initialProduct = '', initialDepa
 
         <div className="modal-header">
           <div className="header-badge-row">
-            <span className="badge-overline font-mono">DIRECT FACTORY DOSSIER</span>
-            <span className="badge-subtag font-mono">SAVOGNA D’ISONZO HQ</span>
+            <span className="badge-overline font-mono">DEMO INTERACTION</span>
+            <span className="badge-subtag font-mono">CONCEPT PROTOTYPE</span>
           </div>
           <h3 id="modal-title" className="modal-title">
             Technical Enquiry & Quotation
           </h3>
           <p className="modal-subtitle">
-            Connect directly with our engineering and commercial teams in Savogna d’Isonzo, Italy.
+            Simulate a technical inquiry to test the user flow. (Interactive demonstration)
           </p>
         </div>
 
@@ -204,38 +202,44 @@ export function EnquiryModal({ isOpen, onClose, initialProduct = '', initialDepa
 
               <div className="form-footer">
                 <div className="privacy-note">
-                  <ShieldCheck size={16} color="#A48256" style={{ flexShrink: 0 }} />
-                  <span>Confidential industrial dossier. Direct Savogna d'Isonzo HQ dispatch.</span>
+                  <ShieldCheck size={16} color="var(--color-accent)" style={{ flexShrink: 0 }} />
+                  <span>Interactive demonstration prototype. Submissions are processed locally.</span>
                 </div>
                 <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
                   <Send size={15} />
-                  <span>{isSubmitting ? 'Transmitting...' : 'Transmit Enquiry'}</span>
+                  <span>{isSubmitting ? 'Validating...' : 'Simulate Submission'}</span>
                 </button>
               </div>
             </form>
           ) : (
             <div className="submission-success">
               <div className="success-icon-wrap">
-                <CheckCircle2 size={44} color="#A48256" />
+                <CheckCircle2 size={40} color="var(--color-accent)" />
               </div>
-              <h3 style={{ fontSize: '1.5rem', marginTop: '0.5rem', fontFamily: 'var(--font-heading)' }}>Enquiry Registered Successfully</h3>
-              <p className="success-ref font-mono">
-                Reference Code: <strong className="tabular-nums">{referenceId}</strong>
-              </p>
-              <p style={{ margin: '1rem 0 1.25rem', color: '#445766', fontSize: '0.925rem', lineHeight: '1.6' }}>
-                Thank you, <strong>{formData.name}</strong>. Your technical dossier has been routed to the <strong>Tomsic {formData.department} Division</strong> in Savogna d'Isonzo. An application engineer will follow up within 24 business hours.
+              <h3 style={{ fontSize: '1.4rem', marginTop: '0.5rem', fontFamily: 'var(--font-heading)' }}>
+                Demo submission complete — no enquiry was sent.
+              </h3>
+              <p style={{ margin: '0.85rem 0 1.25rem', color: '#445766', fontSize: '0.925rem', lineHeight: '1.6' }}>
+                This website is an independent digital concept and demonstration prototype for Tomsic Advanced Technologies. Your form input was validated locally in your browser for demonstration purposes and has not been transmitted to Tomsic S.r.l.
               </p>
 
               <div className="direct-contact-box">
-                <strong style={{ fontSize: '0.85rem' }}>Direct Factory Dispatch:</strong>
-                <div style={{ display: 'flex', gap: '1.25rem', marginTop: '0.4rem', fontSize: '0.8125rem', color: '#141D24', flexWrap: 'wrap' }}>
-                  <span className="font-mono tabular-nums"><Phone size={13} style={{ display: 'inline', marginRight: '4px' }} /> +39 (0481) 882320</span>
-                  <span><Mail size={13} style={{ display: 'inline', marginRight: '4px' }} /> {formData.department === 'Service' ? 'service@tomsic.it' : formData.department === 'Spares' ? 'spares@tomsic.it' : 'sales@tomsic.it'}</span>
+                <strong style={{ fontSize: '0.85rem', display: 'block', marginBottom: '0.35rem' }}>Official Factory Inquiries:</strong>
+                <p style={{ fontSize: '0.8125rem', color: '#5C7080', lineHeight: '1.45', margin: '0 0 0.5rem' }}>
+                  For genuine commercial or technical inquiries, please contact Tomsic S.r.l. directly via their official Italian headquarters:
+                </p>
+                <div style={{ display: 'flex', gap: '1.25rem', fontSize: '0.8125rem', color: '#141D24', flexWrap: 'wrap' }}>
+                  <a href="tel:+390481882320" style={{ color: '#141D24', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+                    <Phone size={13} style={{ display: 'inline', marginRight: '4px' }} /> +39 (0481) 882320
+                  </a>
+                  <a href="mailto:sales@tomsic.it" style={{ color: '#141D24', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+                    <Mail size={13} style={{ display: 'inline', marginRight: '4px' }} /> sales@tomsic.it
+                  </a>
                 </div>
               </div>
 
               <button className="btn btn-primary" onClick={handleReset} style={{ marginTop: '1.5rem', width: '100%', justifyContent: 'center' }}>
-                Close Confirmation
+                Close Demo Window
               </button>
             </div>
           )}
@@ -417,24 +421,25 @@ export function EnquiryModal({ isOpen, onClose, initialProduct = '', initialDepa
         }
         @media (max-width: 640px) {
           .modal-backdrop {
-            padding: 1rem 0.75rem;
-            align-items: center;
+            padding: 1.25rem 0.75rem;
+            align-items: flex-start;
           }
           .modal-window {
-            padding: 1.5rem 1.25rem 1.25rem;
-            max-height: calc(100vh - 2rem);
+            margin: auto 0;
+            padding: 1.5rem 1.15rem 1.25rem;
+            max-height: calc(100dvh - 2.5rem);
           }
           .modal-close-btn {
-            top: 1.15rem;
-            right: 1.15rem;
-            width: 34px;
-            height: 34px;
+            top: 0.85rem;
+            right: 0.85rem;
+            width: 36px;
+            height: 36px;
           }
           .modal-header {
             margin-bottom: 0.85rem;
             padding-bottom: 0.75rem;
             padding-right: 2.75rem;
-            padding-top: 0.25rem;
+            padding-top: 0;
           }
           .modal-title {
             font-size: 1.35rem;
